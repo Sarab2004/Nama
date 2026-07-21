@@ -1,0 +1,97 @@
+/*
+  Project-wide Peyda for the Payload Admin Panel.
+  Font files are served from /public/peyda (same faces as the public site).
+*/
+
+@font-face {
+  font-family: 'Peyda';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('/peyda/PEYDA-THIN.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Peyda';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('/peyda/PEYDA-EXTRALIGHT.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Peyda';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/peyda/PEYDA-LIGHT.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Peyda';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('/peyda/PEYDA-REGULAR.woff2') format('woff2'),
+    url('/peyda/PEYDA-REGULAR.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Peyda';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url('/peyda/PEYDA-MEDIUM.woff2') format('woff2'),
+    url('/peyda/PEYDA-MEDIUM.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Peyda';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    url('/peyda/PEYDA-SEMIBOLD.woff2') format('woff2'),
+    url('/peyda/PEYDA-SEMIBOLD.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Peyda';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('/peyda/PEYDA-BOLD.woff2') format('woff2'),
+    url('/peyda/PEYDA-BOLD.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Peyda';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/peyda/PEYDA-EXTRABOLD.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Peyda';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/peyda/PEYDA-BLACK.TTF') format('truetype');
+}
+
+:root {
+  --font-body: 'Peyda', Tahoma, Arial, sans-serif;
+  --font-serif: 'Peyda', Tahoma, Arial, sans-serif;
+  --font-mono: 'Peyda', Tahoma, Arial, sans-serif;
+}
+
+html,
+body,
+.template-default,
+#app {
+  font-family: 'Peyda', Tahoma, Arial, sans-serif;
+}

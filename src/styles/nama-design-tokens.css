@@ -91,9 +91,10 @@ NAMA CONSULTING GROUP — DESIGN TOKENS
 ============================================================================ */
 
 :root {
-  /* تایپوگرافی — متغیر فونت‌ها از next/font روی html تنظیم می‌شوند */
-  --font-family-fa: var(--font-vazirmatn), "Vazirmatn", "Peyda", Tahoma, Arial, sans-serif;
-  --font-family-en: var(--font-inter), Inter, "Segoe UI", Arial, sans-serif;
+  /* تایپوگرافی — Peyda منبع اصلی (فایل‌ها در /public/peyda) */
+  --font-family-fa: "Peyda", Tahoma, Arial, sans-serif;
+  --font-family-en: "Peyda", "Segoe UI", Arial, sans-serif;
+  --font-family-sans: "Peyda", Tahoma, Arial, sans-serif;
 
   /* گوشه‌ها */
   --radius-xs: 8px;
@@ -569,16 +570,11 @@ body {
   min-width: 320px;
   background: var(--page-background);
   color: var(--page-text);
-  font-family: var(--font-family-fa);
+  font-family: var(--font-family-sans);
   line-height: 1.85;
   transition:
     background-color var(--duration-slow) var(--ease-standard),
     color var(--duration-slow) var(--ease-standard);
-}
-
-:lang(en) body,
-html[lang='en'] body {
-  font-family: var(--font-family-en);
 }
 
 button,

@@ -32,10 +32,16 @@ Payload Admin is out of scope and does not import the frontend token bridge.
 
 ## Typography
 
-- Persian: Vazirmatn via `next/font/google` (`--font-vazirmatn`), with Peyda local files as fallback.
-- English: Inter via `next/font/google` (`--font-inter`).
+- Primary UI font: **Peyda** (all weights 100–900) served from `/public/peyda` and declared in `globals.css` via `@font-face`.
+- Source/archive copy: `/peyda` (kept in sync with `public/peyda`).
+- Stack: `"Peyda", Tahoma, Arial, sans-serif` for both Persian and English public UI (`--font-family-sans`).
 - Body line-height targets Persian readability (`1.85` from tokens).
+- Weight mapping:
+  - 100 Thin · 200 ExtraLight · 300 Light · 400 Regular · 500 Medium
+  - 600 SemiBold · 700 Bold · 800 ExtraBold · 900 Black
+- Use Tailwind weight utilities (`font-medium`, `font-semibold`, `font-bold`, …) so the matching Peyda face loads; do not introduce a second webfont for body UI.
 - Rich text / prose colors map to Nama text/link/divider tokens in `tailwind.config.mjs`.
+- Payload Admin uses the same Peyda faces via `src/app/(payload)/custom.scss` (font only; not a full admin redesign).
 
 ## Layout
 

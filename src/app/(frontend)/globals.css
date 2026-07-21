@@ -98,9 +98,18 @@
   h4,
   h5,
   h6 {
+    font-family: "Peyda", Tahoma, Arial, sans-serif;
     font-weight: unset;
     font-size: unset;
     color: var(--text-strong);
+  }
+
+  body,
+  button,
+  input,
+  textarea,
+  select {
+    font-family: "Peyda", Tahoma, Arial, sans-serif;
   }
 }
 
@@ -126,7 +135,7 @@
   --breakpoint-xl: 80rem;
   --breakpoint-2xl: 86rem;
   --font-mono: var(--font-geist-mono);
-  --font-sans: var(--font-family-fa);
+  --font-sans: "Peyda", Tahoma, Arial, sans-serif;
 }
 
 @layer utilities {
