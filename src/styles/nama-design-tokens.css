@@ -1,0 +1,615 @@
+/*
+===============================================================================
+NAMA CONSULTING GROUP — DESIGN TOKENS
+سیستم رنگ و تم وب‌سایت گروه مشاوره نما
+
+نسخه: 1.0
+کاربرد: وب‌سایت، پنل، لندینگ‌پیج و کامپوننت‌های رابط کاربری
+روش استفاده:
+  1) این فایل را در پروژه وارد کنید.
+  2) برای لایت‌مود روی html مقدار data-theme="light" قرار دهید.
+  3) برای دارک‌مود روی html مقدار data-theme="dark" قرار دهید.
+  4) در صورت نبود data-theme، تنظیم سیستم کاربر اعمال می‌شود.
+
+ترتیب اهمیت رنگ‌ها:
+  1. Primary / زرشکی: هویت اصلی برند و اکشن‌های اصلی
+  2. Accent / زیتونی طلایی: تأکید محدود، آیکون و جزئیات
+  3. Neutral / خنثی‌ها: پس‌زمینه، سطوح، متن و حاشیه
+  4. Semantic / معنایی: موفقیت، هشدار، خطا و اطلاعات
+
+نسبت پیشنهادی استفاده در صفحات:
+  - 70٪ رنگ‌های خنثی و فضای سفید
+  - 20٪ زرشکی
+  - 10٪ زیتونی طلایی
+
+نکات مهم:
+  - از زیتونی اصلی برای متن ریز روی سفید استفاده نشود.
+  - متن سفید روی زرشکی مناسب است.
+  - روی پس‌زمینه زیتونی، متن تیره استفاده شود.
+===============================================================================
+*/
+
+
+/* ============================================================================
+   01. BRAND SOURCE PALETTE
+   رنگ‌های پایه و استخراج‌شده از هویت بصری
+============================================================================ */
+
+:root {
+  /* زرشکی برند */
+  --brand-red-50:  #f9eeee;
+  --brand-red-100: #f4e7e7;
+  --brand-red-200: #e8caca;
+  --brand-red-300: #d99f9f;
+  --brand-red-400: #c86e6e;
+  --brand-red-500: #b83232;
+  --brand-red-600: #990f0f;
+  --brand-red-700: #7a0000; /* رنگ اصلی استخراج‌شده */
+  --brand-red-800: #610000;
+  --brand-red-900: #490000;
+  --brand-red-950: #2d0000;
+
+  /* زیتونی طلایی برند */
+  --brand-olive-50:  #faf9ec;
+  --brand-olive-100: #f2f1d9;
+  --brand-olive-200: #e5e3ae;
+  --brand-olive-300: #d7d27e;
+  --brand-olive-400: #c3bf59;
+  --brand-olive-500: #aaa842; /* رنگ اصلی استخراج‌شده */
+  --brand-olive-600: #929038;
+  --brand-olive-700: #747326;
+  --brand-olive-800: #5b5a20;
+  --brand-olive-900: #444318;
+  --brand-olive-950: #29290e;
+
+  /* خنثی گرم */
+  --neutral-0:   #ffffff;
+  --neutral-25:  #fdfcf9;
+  --neutral-50:  #faf9f5;
+  --neutral-100: #f5f2ee;
+  --neutral-200: #e7e2dc;
+  --neutral-300: #d5cfca;
+  --neutral-400: #aaa2a2;
+  --neutral-500: #7f7777;
+  --neutral-600: #6d6666;
+  --neutral-700: #494343;
+  --neutral-800: #2c2526;
+  --neutral-850: #251a1b;
+  --neutral-900: #1d1516;
+  --neutral-950: #120d0e;
+  --neutral-1000:#000000;
+
+  /* رنگ‌های ثابت */
+  --white: #ffffff;
+  --black: #000000;
+}
+
+
+/* ============================================================================
+   02. SHARED TOKENS
+   متغیرهای مشترک میان لایت و دارک
+============================================================================ */
+
+:root {
+  /* تایپوگرافی — متغیر فونت‌ها از next/font روی html تنظیم می‌شوند */
+  --font-family-fa: var(--font-vazirmatn), "Vazirmatn", "Peyda", Tahoma, Arial, sans-serif;
+  --font-family-en: var(--font-inter), Inter, "Segoe UI", Arial, sans-serif;
+
+  /* گوشه‌ها */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-xl: 44px;
+  --radius-pill: 999px;
+
+  /* اندازه کلی محتوا */
+  --container-sm: 760px;
+  --container-md: 980px;
+  --container-lg: 1180px;
+  --container-xl: 1320px;
+  --container: var(--container-lg);
+
+  /* زمان انیمیشن */
+  --duration-fast: 120ms;
+  --duration-normal: 180ms;
+  --duration-slow: 260ms;
+
+  /* منحنی حرکت */
+  --ease-standard: cubic-bezier(.2, .8, .2, 1);
+  --ease-emphasized: cubic-bezier(.2, .9, .2, 1);
+
+  /* فوکوس */
+  --focus-width: 3px;
+  --focus-offset: 3px;
+
+  /* رنگ‌های معنایی پایه */
+  --success-base: #237a4b;
+  --warning-base: #a96100;
+  --danger-base:  #b42318;
+  --info-base:    #1769aa;
+}
+
+
+/* ============================================================================
+   03. LIGHT MODE
+   توکن‌های معنایی لایت‌مود
+============================================================================ */
+
+:root,
+html[data-theme="light"],
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* --------------------------------------------------------------------------
+     رنگ اصلی برند
+  -------------------------------------------------------------------------- */
+  --primary: var(--brand-red-700);
+  --primary-hover: var(--brand-red-800);
+  --primary-active: var(--brand-red-900);
+  --primary-soft: var(--brand-red-100);
+  --primary-subtle: var(--brand-red-50);
+  --primary-contrast: var(--white);
+
+  /* --------------------------------------------------------------------------
+     رنگ مکمل
+  -------------------------------------------------------------------------- */
+  --accent: var(--brand-olive-500);
+  --accent-hover: var(--brand-olive-600);
+  --accent-active: var(--brand-olive-700);
+  --accent-strong: var(--brand-olive-700);
+  --accent-soft: var(--brand-olive-100);
+  --accent-subtle: var(--brand-olive-50);
+  --accent-contrast: #171707;
+
+  /* --------------------------------------------------------------------------
+     پس‌زمینه و سطوح
+  -------------------------------------------------------------------------- */
+  --bg: var(--neutral-50);
+  --bg-elevated: var(--neutral-25);
+  --surface: var(--neutral-0);
+  --surface-2: var(--neutral-100);
+  --surface-3: #eeeae5;
+  --surface-inverse: var(--neutral-900);
+
+  /* --------------------------------------------------------------------------
+     متن
+  -------------------------------------------------------------------------- */
+  --text: #1d1919;
+  --text-strong: #100d0d;
+  --text-muted: var(--neutral-600);
+  --text-subtle: var(--neutral-500);
+  --text-disabled: #aaa3a3;
+  --text-inverse: var(--white);
+  --text-link: var(--primary);
+  --text-link-hover: var(--primary-hover);
+
+  /* --------------------------------------------------------------------------
+     خطوط، حاشیه و جداکننده
+  -------------------------------------------------------------------------- */
+  --border: rgba(122, 0, 0, 0.12);
+  --border-strong: rgba(122, 0, 0, 0.24);
+  --border-neutral: var(--neutral-200);
+  --divider: rgba(29, 25, 25, 0.10);
+
+  /* --------------------------------------------------------------------------
+     هدر و سطوح شفاف
+  -------------------------------------------------------------------------- */
+  --header-bg: rgba(250, 249, 245, 0.86);
+  --overlay: rgba(18, 13, 14, 0.55);
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.62);
+
+  /* --------------------------------------------------------------------------
+     نورها و دکوراسیون
+  -------------------------------------------------------------------------- */
+  --hero-glow: rgba(170, 168, 66, 0.18);
+  --primary-glow: rgba(122, 0, 0, 0.12);
+  --watermark: rgba(122, 0, 0, 0.045);
+
+  /* --------------------------------------------------------------------------
+     سایه‌ها
+  -------------------------------------------------------------------------- */
+  --shadow-xs: 0 3px 10px rgba(67, 24, 24, 0.05);
+  --shadow-sm: 0 8px 26px rgba(67, 24, 24, 0.07);
+  --shadow-md: 0 22px 60px rgba(67, 24, 24, 0.13);
+  --shadow-lg: 0 30px 90px rgba(67, 24, 24, 0.17);
+  --shadow-primary: 0 12px 28px rgba(122, 0, 0, 0.18);
+  --shadow-primary-hover: 0 16px 34px rgba(122, 0, 0, 0.25);
+
+  /* --------------------------------------------------------------------------
+     گرادیان‌ها
+  -------------------------------------------------------------------------- */
+  --gradient-primary:
+    linear-gradient(135deg, var(--brand-red-700), var(--brand-red-900));
+
+  --gradient-surface:
+    linear-gradient(135deg, var(--surface), var(--surface-2));
+
+  --gradient-hero:
+    radial-gradient(circle at 84% 10%, var(--hero-glow), transparent 26%),
+    radial-gradient(circle at 12% 34%, var(--primary-glow), transparent 24%);
+
+  /* --------------------------------------------------------------------------
+     وضعیت‌های تعاملی
+  -------------------------------------------------------------------------- */
+  --hover-surface: rgba(122, 0, 0, 0.045);
+  --selected-surface: var(--primary-soft);
+  --pressed-surface: rgba(122, 0, 0, 0.12);
+  --focus-ring: rgba(122, 0, 0, 0.28);
+
+  /* --------------------------------------------------------------------------
+     رنگ‌های معنایی
+  -------------------------------------------------------------------------- */
+  --success: #237a4b;
+  --success-soft: #e7f5ec;
+  --success-contrast: #ffffff;
+
+  --warning: #9a5a00;
+  --warning-soft: #fff2d8;
+  --warning-contrast: #ffffff;
+
+  --danger: #b42318;
+  --danger-soft: #fdeceb;
+  --danger-contrast: #ffffff;
+
+  --info: #1769aa;
+  --info-soft: #e9f3fb;
+  --info-contrast: #ffffff;
+}
+
+
+/* ============================================================================
+   04. DARK MODE
+   توکن‌های معنایی دارک‌مود
+============================================================================ */
+
+html[data-theme="dark"],
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* --------------------------------------------------------------------------
+     رنگ اصلی برند
+     در دارک‌مود زرشکی روشن‌تر شده تا روی زمینه تیره قابل مشاهده باشد.
+  -------------------------------------------------------------------------- */
+  --primary: var(--brand-red-500);
+  --primary-hover: #d04a4a;
+  --primary-active: #e25d5d;
+  --primary-soft: #341719;
+  --primary-subtle: #261214;
+  --primary-contrast: var(--white);
+
+  /* --------------------------------------------------------------------------
+     رنگ مکمل
+  -------------------------------------------------------------------------- */
+  --accent: #d1ce69;
+  --accent-hover: #ddd982;
+  --accent-active: #e5e391;
+  --accent-strong: #e5e391;
+  --accent-soft: #2b2a18;
+  --accent-subtle: #211f13;
+  --accent-contrast: #171707;
+
+  /* --------------------------------------------------------------------------
+     پس‌زمینه و سطوح
+  -------------------------------------------------------------------------- */
+  --bg: var(--neutral-950);
+  --bg-elevated: #171011;
+  --surface: var(--neutral-900);
+  --surface-2: var(--neutral-850);
+  --surface-3: #302223;
+  --surface-inverse: var(--neutral-50);
+
+  /* --------------------------------------------------------------------------
+     متن
+  -------------------------------------------------------------------------- */
+  --text: #f7f1f1;
+  --text-strong: #ffffff;
+  --text-muted: #c3b9b9;
+  --text-subtle: #a99e9e;
+  --text-disabled: #756b6b;
+  --text-inverse: #1d1919;
+  --text-link: #e17272;
+  --text-link-hover: #f09494;
+
+  /* --------------------------------------------------------------------------
+     خطوط، حاشیه و جداکننده
+  -------------------------------------------------------------------------- */
+  --border: rgba(229, 225, 218, 0.11);
+  --border-strong: rgba(229, 225, 218, 0.20);
+  --border-neutral: rgba(255, 255, 255, 0.11);
+  --divider: rgba(255, 255, 255, 0.09);
+
+  /* --------------------------------------------------------------------------
+     هدر و سطوح شفاف
+  -------------------------------------------------------------------------- */
+  --header-bg: rgba(18, 13, 14, 0.86);
+  --overlay: rgba(0, 0, 0, 0.70);
+  --glass-bg: rgba(29, 21, 22, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.10);
+
+  /* --------------------------------------------------------------------------
+     نورها و دکوراسیون
+  -------------------------------------------------------------------------- */
+  --hero-glow: rgba(209, 206, 105, 0.13);
+  --primary-glow: rgba(184, 50, 50, 0.22);
+  --watermark: rgba(255, 255, 255, 0.035);
+
+  /* --------------------------------------------------------------------------
+     سایه‌ها
+  -------------------------------------------------------------------------- */
+  --shadow-xs: 0 4px 14px rgba(0, 0, 0, 0.18);
+  --shadow-sm: 0 10px 28px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 24px 70px rgba(0, 0, 0, 0.40);
+  --shadow-lg: 0 34px 100px rgba(0, 0, 0, 0.52);
+  --shadow-primary: 0 12px 30px rgba(184, 50, 50, 0.18);
+  --shadow-primary-hover: 0 16px 38px rgba(184, 50, 50, 0.27);
+
+  /* --------------------------------------------------------------------------
+     گرادیان‌ها
+  -------------------------------------------------------------------------- */
+  --gradient-primary:
+    linear-gradient(135deg, #9e2020, #5d0909);
+
+  --gradient-surface:
+    linear-gradient(135deg, var(--surface), var(--surface-2));
+
+  --gradient-hero:
+    radial-gradient(circle at 84% 10%, var(--hero-glow), transparent 26%),
+    radial-gradient(circle at 12% 34%, var(--primary-glow), transparent 24%);
+
+  /* --------------------------------------------------------------------------
+     وضعیت‌های تعاملی
+  -------------------------------------------------------------------------- */
+  --hover-surface: rgba(255, 255, 255, 0.055);
+  --selected-surface: var(--primary-soft);
+  --pressed-surface: rgba(255, 255, 255, 0.10);
+  --focus-ring: rgba(225, 114, 114, 0.42);
+
+  /* --------------------------------------------------------------------------
+     رنگ‌های معنایی
+  -------------------------------------------------------------------------- */
+  --success: #58bd85;
+  --success-soft: #153225;
+  --success-contrast: #07180f;
+
+  --warning: #e7a63f;
+  --warning-soft: #362611;
+  --warning-contrast: #1b1003;
+
+  --danger: #ed766d;
+  --danger-soft: #3a1817;
+  --danger-contrast: #1c0706;
+
+  --info: #6db9ee;
+  --info-soft: #142b3b;
+  --info-contrast: #061621;
+}
+
+
+/* ============================================================================
+   05. SYSTEM DARK-MODE FALLBACK
+   فقط وقتی data-theme روی html تنظیم نشده باشد.
+============================================================================ */
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    color-scheme: dark;
+
+    --primary: var(--brand-red-500);
+    --primary-hover: #d04a4a;
+    --primary-active: #e25d5d;
+    --primary-soft: #341719;
+    --primary-subtle: #261214;
+    --primary-contrast: var(--white);
+
+    --accent: #d1ce69;
+    --accent-hover: #ddd982;
+    --accent-active: #e5e391;
+    --accent-strong: #e5e391;
+    --accent-soft: #2b2a18;
+    --accent-subtle: #211f13;
+    --accent-contrast: #171707;
+
+    --bg: var(--neutral-950);
+    --bg-elevated: #171011;
+    --surface: var(--neutral-900);
+    --surface-2: var(--neutral-850);
+    --surface-3: #302223;
+    --surface-inverse: var(--neutral-50);
+
+    --text: #f7f1f1;
+    --text-strong: #ffffff;
+    --text-muted: #c3b9b9;
+    --text-subtle: #a99e9e;
+    --text-disabled: #756b6b;
+    --text-inverse: #1d1919;
+    --text-link: #e17272;
+    --text-link-hover: #f09494;
+
+    --border: rgba(229, 225, 218, 0.11);
+    --border-strong: rgba(229, 225, 218, 0.20);
+    --border-neutral: rgba(255, 255, 255, 0.11);
+    --divider: rgba(255, 255, 255, 0.09);
+
+    --header-bg: rgba(18, 13, 14, 0.86);
+    --overlay: rgba(0, 0, 0, 0.70);
+    --glass-bg: rgba(29, 21, 22, 0.82);
+    --glass-border: rgba(255, 255, 255, 0.10);
+
+    --hero-glow: rgba(209, 206, 105, 0.13);
+    --primary-glow: rgba(184, 50, 50, 0.22);
+    --watermark: rgba(255, 255, 255, 0.035);
+
+    --shadow-xs: 0 4px 14px rgba(0, 0, 0, 0.18);
+    --shadow-sm: 0 10px 28px rgba(0, 0, 0, 0.24);
+    --shadow-md: 0 24px 70px rgba(0, 0, 0, 0.40);
+    --shadow-lg: 0 34px 100px rgba(0, 0, 0, 0.52);
+    --shadow-primary: 0 12px 30px rgba(184, 50, 50, 0.18);
+    --shadow-primary-hover: 0 16px 38px rgba(184, 50, 50, 0.27);
+
+    --gradient-primary:
+      linear-gradient(135deg, #9e2020, #5d0909);
+
+    --gradient-surface:
+      linear-gradient(135deg, var(--surface), var(--surface-2));
+
+    --gradient-hero:
+      radial-gradient(circle at 84% 10%, var(--hero-glow), transparent 26%),
+      radial-gradient(circle at 12% 34%, var(--primary-glow), transparent 24%);
+
+    --hover-surface: rgba(255, 255, 255, 0.055);
+    --selected-surface: var(--primary-soft);
+    --pressed-surface: rgba(255, 255, 255, 0.10);
+    --focus-ring: rgba(225, 114, 114, 0.42);
+
+    --success: #58bd85;
+    --success-soft: #153225;
+    --success-contrast: #07180f;
+    --warning: #e7a63f;
+    --warning-soft: #362611;
+    --warning-contrast: #1b1003;
+    --danger: #ed766d;
+    --danger-soft: #3a1817;
+    --danger-contrast: #1c0706;
+    --info: #6db9ee;
+    --info-soft: #142b3b;
+    --info-contrast: #061621;
+  }
+}
+
+
+/* ============================================================================
+   06. COMPONENT TOKEN MAPPING
+   نگاشت توکن‌ها به اجزای رایج رابط کاربری
+============================================================================ */
+
+:root {
+  /* صفحه */
+  --page-background: var(--bg);
+  --page-text: var(--text);
+
+  /* هدر */
+  --header-background: var(--header-bg);
+  --header-border: var(--border);
+
+  /* کارت */
+  --card-background: var(--surface);
+  --card-background-muted: var(--surface-2);
+  --card-border: var(--border);
+  --card-shadow: var(--shadow-sm);
+  --card-shadow-hover: var(--shadow-md);
+
+  /* دکمه اصلی */
+  --button-primary-bg: var(--primary);
+  --button-primary-bg-hover: var(--primary-hover);
+  --button-primary-bg-active: var(--primary-active);
+  --button-primary-text: var(--primary-contrast);
+  --button-primary-shadow: var(--shadow-primary);
+  --button-primary-shadow-hover: var(--shadow-primary-hover);
+
+  /* دکمه ثانویه */
+  --button-secondary-bg: transparent;
+  --button-secondary-bg-hover: var(--primary-soft);
+  --button-secondary-border: var(--primary);
+  --button-secondary-text: var(--primary);
+
+  /* دکمه مکمل */
+  --button-accent-bg: var(--accent);
+  --button-accent-bg-hover: var(--accent-hover);
+  --button-accent-bg-active: var(--accent-active);
+  --button-accent-text: var(--accent-contrast);
+
+  /* ورودی */
+  --input-bg: var(--surface);
+  --input-text: var(--text);
+  --input-placeholder: var(--text-subtle);
+  --input-border: var(--border-neutral);
+  --input-border-hover: var(--border-strong);
+  --input-border-focus: var(--primary);
+  --input-focus-ring: var(--focus-ring);
+
+  /* لینک */
+  --link: var(--text-link);
+  --link-hover: var(--text-link-hover);
+
+  /* منو */
+  --nav-text: var(--text-muted);
+  --nav-text-hover: var(--primary);
+  --nav-indicator: var(--accent);
+
+  /* فوتر */
+  --footer-bg: var(--brand-red-800);
+  --footer-text: rgba(255, 255, 255, 0.82);
+  --footer-heading: var(--white);
+  --footer-link: var(--white);
+  --footer-border: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ============================================================================
+   07. BASE IMPLEMENTATION (project-adapted)
+   Minimal base styles. Component styling stays on Tailwind / shadcn primitives
+   that map to these tokens — avoid a parallel .btn/.card system.
+============================================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--page-background);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--page-background);
+  color: var(--page-text);
+  font-family: var(--font-family-fa);
+  line-height: 1.85;
+  transition:
+    background-color var(--duration-slow) var(--ease-standard),
+    color var(--duration-slow) var(--ease-standard);
+}
+
+:lang(en) body,
+html[lang='en'] body {
+  font-family: var(--font-family-en);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+
+/* ============================================================================
+   08. ACCESSIBILITY
+============================================================================ */
+
+::selection {
+  color: var(--primary-contrast);
+  background: var(--primary);
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

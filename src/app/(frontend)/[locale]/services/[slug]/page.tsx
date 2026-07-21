@@ -108,7 +108,7 @@ export default async function ServicePage({ params: paramsPromise }: Args) {
             </h2>
             <ul className="grid gap-4 md:grid-cols-2 list-none p-0 m-0">
               {benefits.map((benefit, index) => (
-                <li className="rounded-lg border border-border p-5" key={benefit.id || `${benefit.title}-${index}`}>
+                <li className="nama-card p-5" key={benefit.id || `${benefit.title}-${index}`}>
                   <h3 className="text-lg font-medium mb-2">{benefit.title}</h3>
                   {benefit.description && (
                     <p className="text-muted-foreground text-sm leading-relaxed">{benefit.description}</p>
@@ -127,12 +127,12 @@ export default async function ServicePage({ params: paramsPromise }: Args) {
             <ol className="grid gap-4 list-none p-0 m-0">
               {processSteps.map((step, index) => (
                 <li
-                  className="rounded-lg border border-border p-5 flex gap-4"
+                  className="nama-card p-5 flex gap-4"
                   key={step.id || `${step.title}-${index}`}
                 >
                   <span
                     aria-hidden="true"
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold shadow-[var(--shadow-primary)]"
                   >
                     {index + 1}
                   </span>
@@ -158,7 +158,7 @@ export default async function ServicePage({ params: paramsPromise }: Args) {
             </h2>
             <ul className="grid gap-4 md:grid-cols-2 list-none p-0 m-0">
               {audiences.map((audience, index) => (
-                <li className="rounded-lg border border-border p-5" key={audience.id || `${audience.title}-${index}`}>
+                <li className="nama-card p-5" key={audience.id || `${audience.title}-${index}`}>
                   <h3 className="text-lg font-medium mb-2">{audience.title}</h3>
                   {audience.description && (
                     <p className="text-muted-foreground text-sm leading-relaxed">{audience.description}</p>

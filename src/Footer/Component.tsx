@@ -18,9 +18,12 @@ export async function Footer({ locale }: { locale?: Locale }) {
   const navItems = footerData?.navItems || []
 
   return (
-    <footer className="mt-auto border-t border-border bg-black dark:bg-card text-white">
-      <div className="container py-8 gap-8 flex flex-col md:flex-row md:justify-between">
-        <Link className="flex items-center" href={`/${activeLocale}`}>
+    <footer className="site-footer mt-auto">
+      <div className="container py-10 gap-8 flex flex-col md:flex-row md:justify-between">
+        <Link
+          className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+          href={`/${activeLocale}`}
+        >
           <Logo alt={dictionary.logo.alt} />
         </Link>
 
@@ -29,9 +32,15 @@ export async function Footer({ locale }: { locale?: Locale }) {
             <LanguageSelector />
             <ThemeSelector />
           </div>
-          <nav className="flex flex-col md:flex-row gap-4">
+          <nav aria-label={dictionary.admin.pages} className="flex flex-col md:flex-row gap-4">
             {navItems.map(({ link }, i) => {
-              return <CMSLink className="text-white" key={i} {...link} />
+              return (
+                <CMSLink
+                  className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+                  key={i}
+                  {...link}
+                />
+              )
             })}
           </nav>
         </div>

@@ -8,6 +8,7 @@ import { CMSLink } from '@/components/Link'
 import Link from 'next/link'
 import { SearchIcon } from 'lucide-react'
 import { LanguageSelector } from '@/providers/Locale/LanguageSelector'
+import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 import { useLocale } from '@/providers/Locale'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
@@ -15,14 +16,25 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const { dictionary, locale } = useLocale()
 
   return (
-    <nav className="flex gap-3 items-center">
+    <nav aria-label={dictionary.admin.pages} className="flex gap-3 items-center flex-wrap justify-end">
       {navItems.map(({ link }, i) => {
-        return <CMSLink key={i} {...link} appearance="link" />
+        return (
+          <CMSLink
+            className="text-[var(--nav-text)] hover:text-[var(--nav-text-hover)] font-medium"
+            key={i}
+            {...link}
+            appearance="link"
+          />
+        )
       })}
       <LanguageSelector />
-      <Link href={`/${locale}/search`}>
+      <ThemeSelector />
+      <Link
+        className="inline-flex items-center justify-center rounded-sm p-1 text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        href={`/${locale}/search`}
+      >
         <span className="sr-only">{dictionary.search.title}</span>
-        <SearchIcon className="w-5 text-primary" />
+        <SearchIcon aria-hidden className="w-5" />
       </Link>
     </nav>
   )

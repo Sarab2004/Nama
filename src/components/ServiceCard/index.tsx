@@ -24,7 +24,7 @@ export const ServiceCard: React.FC<{
   return (
     <article
       className={cn(
-        'border border-border rounded-lg overflow-hidden bg-card hover:cursor-pointer h-full flex flex-col',
+        'nama-card overflow-hidden hover:cursor-pointer h-full flex flex-col',
         className,
       )}
       ref={cardRef}

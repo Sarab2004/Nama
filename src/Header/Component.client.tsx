@@ -17,7 +17,6 @@ interface HeaderClientProps {
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const { dictionary, locale } = useLocale()
-  /* Storing the value in a useState to avoid hydration errors */
   const [theme, setTheme] = useState<string | null>(null)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
@@ -38,9 +37,15 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   return (
-    <header className="container relative z-20   " {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex justify-between">
-        <Link href={`/${locale}`}>
+    <header
+      className="site-header sticky top-0 z-20"
+      {...(theme ? { 'data-theme': theme } : {})}
+    >
+      <div className="container py-5 flex justify-between items-center gap-4">
+        <Link
+          className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+          href={`/${locale}`}
+        >
           <Logo
             alt={dictionary.logo.alt}
             loading="eager"

@@ -24,7 +24,7 @@ export const ServiceConsultationCTA: React.FC<Props> = ({
   title,
 }) => {
   return (
-    <aside className="mt-16 rounded-lg border border-border bg-card p-6 md:p-8">
+    <aside className="mt-16 nama-card p-6 md:p-8">
       <h2 className="text-2xl font-semibold mb-3">{title}</h2>
       <p className="text-muted-foreground mb-6 max-w-2xl">{description}</p>
       <Button asChild variant="default">

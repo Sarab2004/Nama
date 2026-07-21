@@ -8,5 +8,9 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
     include: ['tests/int/**/*.int.spec.ts'],
+    // Payload + Postgres init is heavy; parallel file bootstraps contend and trip the default 10s hook timeout.
+    fileParallelism: false,
+    hookTimeout: 60000,
+    testTimeout: 30000,
   },
 })

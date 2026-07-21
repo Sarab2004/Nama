@@ -34,7 +34,7 @@ export const Card: React.FC<{
   return (
     <article
       className={cn(
-        'border border-border rounded-lg overflow-hidden bg-card hover:cursor-pointer',
+        'nama-card overflow-hidden hover:cursor-pointer',
         className,
       )}
       ref={cardRef}
