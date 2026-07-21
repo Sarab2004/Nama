@@ -71,6 +71,36 @@ export const Projects: CollectionConfig<'projects'> = {
       maxLength: 160,
       required: true,
     },
+    // Keep join targets at top-level so Client/Service joins resolve reliably during sanitize.
+    {
+      name: 'client',
+      type: 'relationship',
+      label: {
+        en: 'Client',
+        fa: 'کارفرما',
+      },
+      relationTo: 'clients',
+      required: true,
+      admin: {
+        description:
+          'کارفرما از Clients انتخاب شود. نام کارفرما را در این Collection تکرار نکنید.',
+      },
+    },
+    {
+      name: 'services',
+      type: 'relationship',
+      label: {
+        en: 'Related services',
+        fa: 'خدمات مرتبط',
+      },
+      relationTo: 'services',
+      hasMany: true,
+      required: true,
+      admin: {
+        description:
+          'یک یا چند خدمت از Services. فیلد جداگانه serviceType نسازید؛ نوع خدمت از همین رابطه مشخص می‌شود.',
+      },
+    },
     {
       type: 'tabs',
       tabs: [
@@ -91,35 +121,6 @@ export const Projects: CollectionConfig<'projects'> = {
               maxLength: 320,
               admin: {
                 description: 'خلاصه کوتاه برای کارت پروژه و SEO در آینده.',
-              },
-            },
-            {
-              name: 'client',
-              type: 'relationship',
-              label: {
-                en: 'Client',
-                fa: 'کارفرما',
-              },
-              relationTo: 'clients',
-              required: true,
-              admin: {
-                description:
-                  'کارفرما از Clients انتخاب شود. نام کارفرما را در این Collection تکرار نکنید.',
-              },
-            },
-            {
-              name: 'services',
-              type: 'relationship',
-              label: {
-                en: 'Related services',
-                fa: 'خدمات مرتبط',
-              },
-              relationTo: 'services',
-              hasMany: true,
-              required: true,
-              admin: {
-                description:
-                  'یک یا چند خدمت از Services. فیلد جداگانه serviceType نسازید؛ نوع خدمت از همین رابطه مشخص می‌شود.',
               },
             },
             {

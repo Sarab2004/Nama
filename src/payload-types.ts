@@ -898,10 +898,6 @@ export interface Project {
   id: number;
   title: string;
   /**
-   * خلاصه کوتاه برای کارت پروژه و SEO در آینده.
-   */
-  shortDescription?: string | null;
-  /**
    * کارفرما از Clients انتخاب شود. نام کارفرما را در این Collection تکرار نکنید.
    */
   client: number | Client;
@@ -909,6 +905,10 @@ export interface Project {
    * یک یا چند خدمت از Services. فیلد جداگانه serviceType نسازید؛ نوع خدمت از همین رابطه مشخص می‌شود.
    */
   services: (number | Service)[];
+  /**
+   * خلاصه کوتاه برای کارت پروژه و SEO در آینده.
+   */
+  shortDescription?: string | null;
   /**
    * سال یا بازه؛ مثلاً ۱۴۰۲، ۱۴۰۲ تا ۱۴۰۳، 2023 یا 2023–2024.
    */
@@ -1629,9 +1629,9 @@ export interface ClientsSelect<T extends boolean = true> {
  */
 export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
-  shortDescription?: T;
   client?: T;
   services?: T;
+  shortDescription?: T;
   executionYear?: T;
   location?: T;
   featuredImage?: T;
