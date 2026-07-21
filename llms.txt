@@ -1,0 +1,39 @@
+# Nama — Industrial Portfolio CMS
+
+## Summary
+
+Nama is a Next.js 16 and Payload CMS 3 industrial portfolio/content-management website. It uses TypeScript, React 19, SQLite, Tailwind CSS, and pnpm.
+
+## Main capabilities
+
+- Public industrial portfolio website
+- Payload CMS admin panel at `/admin`
+- Pages, posts, projects, media, categories, and users
+- Reusable layout-builder blocks
+- SEO metadata, sitemap generation, search, redirects, drafts, and live preview
+- Unit/integration tests with Vitest and end-to-end tests with Playwright
+
+## Repository map
+
+- `src/app/`: Next.js application routes and UI
+- `src/collections/`: Payload collection definitions
+- `src/globals/`: global CMS configuration
+- `src/blocks/`: reusable content blocks
+- `public/`: static files
+- `tests/`: automated tests
+- `scripts/`: translation and project utility scripts
+- `payload.config.ts`: Payload CMS configuration
+- `next.config.ts`: Next.js configuration
+- `package.json`: scripts and dependencies
+
+## Local development
+
+1. Install Node.js 20+ and pnpm 9+.
+2. Copy `.env.example` to `.env`.
+3. Set a secure `PAYLOAD_SECRET`.
+4. Run `pnpm install`.
+5. Run `pnpm dev` and open `http://localhost:3000`.
+
+## Important safety note
+
+Do not commit `.env`, database files, build output, or uploaded media. These are excluded by `.gitignore`.

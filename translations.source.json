@@ -1,0 +1,1151 @@
+{
+  "meta": {
+    "generatedAt": "2026-06-29T18:52:43.756Z",
+    "sourceLocale": "en",
+    "targetLocale": "fa",
+    "entryCount": 114,
+    "instructions": "Translate only the persian field. Keep id, source, path, document, kind, and english unchanged. Preserve placeholders, URLs, product names, and code-like tokens."
+  },
+  "entries": [
+    {
+      "english": "Technology",
+      "id": "categories.technology.title",
+      "persian": "فناوری",
+      "source": {
+        "document": "categories.technology",
+        "kind": "seed",
+        "path": "$.title"
+      }
+    },
+    {
+      "english": "News",
+      "id": "categories.news.title",
+      "persian": "اخبار",
+      "source": {
+        "document": "categories.news",
+        "kind": "seed",
+        "path": "$.title"
+      }
+    },
+    {
+      "english": "Finance",
+      "id": "categories.finance.title",
+      "persian": "مالی",
+      "source": {
+        "document": "categories.finance",
+        "kind": "seed",
+        "path": "$.title"
+      }
+    },
+    {
+      "english": "The contact form has been submitted successfully.",
+      "id": "forms.contact.confirmationMessage.root.children.0.children.0.text",
+      "persian": "فرم تماس با موفقیت ارسال شد.",
+      "source": {
+        "document": "forms.contact",
+        "kind": "seed",
+        "path": "$.confirmationMessage.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "Your contact form submission was successfully received.",
+      "id": "forms.contact.emails.0.message.root.children.0.children.0.text",
+      "persian": "پیام فرم تماس شما با موفقیت دریافت شد.",
+      "source": {
+        "document": "forms.contact",
+        "kind": "seed",
+        "path": "$.emails[0].message.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "You've received a new message.",
+      "id": "forms.contact.emails.0.subject",
+      "persian": "پیام جدیدی دریافت کرده‌اید.",
+      "source": {
+        "document": "forms.contact",
+        "kind": "seed",
+        "path": "$.emails[0].subject"
+      }
+    },
+    {
+      "english": "Full Name",
+      "id": "forms.contact.fields.0.label",
+      "persian": "نام کامل",
+      "source": {
+        "document": "forms.contact",
+        "kind": "seed",
+        "path": "$.fields[0].label"
+      }
+    },
+    {
+      "english": "Email",
+      "id": "forms.contact.fields.1.label",
+      "persian": "ایمیل",
+      "source": {
+        "document": "forms.contact",
+        "kind": "seed",
+        "path": "$.fields[1].label"
+      }
+    },
+    {
+      "english": "Phone",
+      "id": "forms.contact.fields.2.label",
+      "persian": "تلفن",
+      "source": {
+        "document": "forms.contact",
+        "kind": "seed",
+        "path": "$.fields[2].label"
+      }
+    },
+    {
+      "english": "Message",
+      "id": "forms.contact.fields.3.label",
+      "persian": "پیام",
+      "source": {
+        "document": "forms.contact",
+        "kind": "seed",
+        "path": "$.fields[3].label"
+      }
+    },
+    {
+      "english": "Submit",
+      "id": "forms.contact.submitButtonLabel",
+      "persian": "ارسال",
+      "source": {
+        "document": "forms.contact",
+        "kind": "seed",
+        "path": "$.submitButtonLabel"
+      }
+    },
+    {
+      "english": "Contact Form",
+      "id": "forms.contact.title",
+      "persian": "فرم تماس",
+      "source": {
+        "document": "forms.contact",
+        "kind": "seed",
+        "path": "$.title"
+      }
+    },
+    {
+      "english": "Admin",
+      "id": "globals.footer.navItems.0.link.label",
+      "persian": "مدیریت",
+      "source": {
+        "document": "globals.footer",
+        "kind": "seed",
+        "path": "$.navItems[0].link.label"
+      }
+    },
+    {
+      "english": "Source Code",
+      "id": "globals.footer.navItems.1.link.label",
+      "persian": "کد منبع",
+      "source": {
+        "document": "globals.footer",
+        "kind": "seed",
+        "path": "$.navItems[1].link.label"
+      }
+    },
+    {
+      "english": "Payload",
+      "id": "globals.footer.navItems.2.link.label",
+      "persian": "Payload",
+      "source": {
+        "document": "globals.footer",
+        "kind": "seed",
+        "path": "$.navItems[2].link.label"
+      }
+    },
+    {
+      "english": "Posts",
+      "id": "globals.header.navItems.0.link.label",
+      "persian": "نوشته‌ها",
+      "source": {
+        "document": "globals.header",
+        "kind": "seed",
+        "path": "$.navItems[0].link.label"
+      }
+    },
+    {
+      "english": "Contact",
+      "id": "globals.header.navItems.1.link.label",
+      "persian": "تماس",
+      "source": {
+        "document": "globals.header",
+        "kind": "seed",
+        "path": "$.navItems[1].link.label"
+      }
+    },
+    {
+      "english": "Contact",
+      "id": "pages.contact.title",
+      "persian": "تماس",
+      "source": {
+        "document": "pages.contact",
+        "kind": "seed",
+        "path": "$.title"
+      }
+    },
+    {
+      "english": "All posts",
+      "id": "pages.home.hero.links.0.link.label",
+      "persian": "همه نوشته‌ها",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.hero.links[0].link.label"
+      }
+    },
+    {
+      "english": "Contact",
+      "id": "pages.home.hero.links.1.link.label",
+      "persian": "تماس",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.hero.links[1].link.label"
+      }
+    },
+    {
+      "english": "Payload Website Template",
+      "id": "pages.home.hero.richText.root.children.0.children.0.text",
+      "persian": "قالب وب‌سایت Payload",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.hero.richText.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "Visit the admin dashboard",
+      "id": "pages.home.hero.richText.root.children.1.children.0.children.0.text",
+      "persian": "به داشبورد مدیریت بروید",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.hero.richText.root.children[1].children[0].children[0].text"
+      }
+    },
+    {
+      "english": "to begin managing this site's content. The code for this template is completely open-source and can be found",
+      "id": "pages.home.hero.richText.root.children.1.children.1.text",
+      "persian": "تا مدیریت محتوای این سایت را شروع کنید. کد این قالب کاملا متن‌باز است و در اینجا در دسترس است",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.hero.richText.root.children[1].children[1].text"
+      }
+    },
+    {
+      "english": "on our Github",
+      "id": "pages.home.hero.richText.root.children.1.children.2.children.0.text",
+      "persian": "در گیت‌هاب ما",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.hero.richText.root.children[1].children[2].children[0].text"
+      }
+    },
+    {
+      "english": "Core features",
+      "id": "pages.home.layout.0.columns.0.richText.root.children.0.children.0.text",
+      "persian": "قابلیت‌های اصلی",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[0].richText.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "Admin Dashboard",
+      "id": "pages.home.layout.0.columns.1.richText.root.children.0.children.0.text",
+      "persian": "داشبورد مدیریت",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[1].richText.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "Manage this site's pages and posts from the",
+      "id": "pages.home.layout.0.columns.1.richText.root.children.1.children.0.text",
+      "persian": "صفحه‌ها و نوشته‌های این سایت را از طریق",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[1].richText.root.children[1].children[0].text"
+      }
+    },
+    {
+      "english": "admin dashboard",
+      "id": "pages.home.layout.0.columns.1.richText.root.children.1.children.1.children.0.text",
+      "persian": "داشبورد مدیریت",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[1].richText.root.children[1].children[1].children[0].text"
+      }
+    },
+    {
+      "english": "Preview",
+      "id": "pages.home.layout.0.columns.2.richText.root.children.0.children.0.text",
+      "persian": "پیش‌نمایش",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[2].richText.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "Using versions, drafts, and preview, editors can review and share their changes before publishing them.",
+      "id": "pages.home.layout.0.columns.2.richText.root.children.1.children.0.text",
+      "persian": "با استفاده از نسخه‌ها، پیش‌نویس‌ها و پیش‌نمایش، ویراستاران می‌توانند تغییرات خود را پیش از انتشار بررسی و به اشتراک بگذارند.",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[2].richText.root.children[1].children[0].text"
+      }
+    },
+    {
+      "english": "Page Builder",
+      "id": "pages.home.layout.0.columns.3.richText.root.children.0.children.0.text",
+      "persian": "صفحه‌ساز",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[3].richText.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "Custom page builder allows you to create unique page, post, and project layouts for any type of content.",
+      "id": "pages.home.layout.0.columns.3.richText.root.children.1.children.0.text",
+      "persian": "صفحه‌ساز سفارشی به شما اجازه می‌دهد برای هر نوع محتوا، چیدمان‌های منحصربه‌فرد برای صفحه، نوشته و پروژه بسازید.",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[3].richText.root.children[1].children[0].text"
+      }
+    },
+    {
+      "english": "Editors have complete control over SEO data and site content directly from the",
+      "id": "pages.home.layout.0.columns.4.richText.root.children.1.children.0.text",
+      "persian": "ویراستاران کنترل کامل داده‌های سئو و محتوای سایت را مستقیما از طریق",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[4].richText.root.children[1].children[0].text"
+      }
+    },
+    {
+      "english": "admin dashboard",
+      "id": "pages.home.layout.0.columns.4.richText.root.children.1.children.1.children.0.text",
+      "persian": "داشبورد مدیریت",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[4].richText.root.children[1].children[1].children[0].text"
+      }
+    },
+    {
+      "english": "Dark Mode",
+      "id": "pages.home.layout.0.columns.5.richText.root.children.0.children.0.text",
+      "persian": "حالت تیره",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[5].richText.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "Users will experience this site in their preferred color scheme and each block can be inverted.",
+      "id": "pages.home.layout.0.columns.5.richText.root.children.1.children.0.text",
+      "persian": "کاربران سایت را با طرح رنگ دلخواه خود تجربه می‌کنند و هر بلوک می‌تواند به حالت معکوس نمایش داده شود.",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[0].columns[5].richText.root.children[1].children[0].text"
+      }
+    },
+    {
+      "english": "Recent posts",
+      "id": "pages.home.layout.2.introContent.root.children.0.children.0.text",
+      "persian": "نوشته‌های اخیر",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[2].introContent.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "The posts below are displayed in an \"Archive\" layout building block which is an extremely powerful way to display documents on a page. It can be auto-populated by collection or by category, or posts can be individually selected. Pagination controls will automatically appear if the number of results exceeds the number of items per page.",
+      "id": "pages.home.layout.2.introContent.root.children.1.children.0.text",
+      "persian": "نوشته‌های زیر در بلوک چیدمان «آرشیو» نمایش داده شده‌اند؛ روشی بسیار قدرتمند برای نمایش اسناد در یک صفحه. این بخش می‌تواند به‌صورت خودکار بر اساس کالکشن یا دسته‌بندی پر شود، یا نوشته‌ها به‌صورت جداگانه انتخاب شوند. اگر تعداد نتایج از تعداد آیتم‌های هر صفحه بیشتر شود، کنترل‌های صفحه‌بندی به‌صورت خودکار نمایش داده می‌شوند.",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[2].introContent.root.children[1].children[0].text"
+      }
+    },
+    {
+      "english": "All posts",
+      "id": "pages.home.layout.3.links.0.link.label",
+      "persian": "همه نوشته‌ها",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[3].links[0].link.label"
+      }
+    },
+    {
+      "english": "This is a call to action",
+      "id": "pages.home.layout.3.richText.root.children.0.children.0.text",
+      "persian": "این یک فراخوان به اقدام است",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[3].richText.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "This is a custom layout building block",
+      "id": "pages.home.layout.3.richText.root.children.1.children.0.text",
+      "persian": "این یک بلوک چیدمان سفارشی است",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[3].richText.root.children[1].children[0].text"
+      }
+    },
+    {
+      "english": "configured in the admin dashboard",
+      "id": "pages.home.layout.3.richText.root.children.1.children.1.children.0.text",
+      "persian": "که در داشبورد مدیریت پیکربندی شده است",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.layout[3].richText.root.children[1].children[1].children[0].text"
+      }
+    },
+    {
+      "english": "Payload Website Template",
+      "id": "pages.home.meta.title",
+      "persian": "قالب وب‌سایت Payload",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.meta.title"
+      }
+    },
+    {
+      "english": "Home",
+      "id": "pages.home.title",
+      "persian": "خانه",
+      "source": {
+        "document": "pages.home",
+        "kind": "seed",
+        "path": "$.title"
+      }
+    },
+    {
+      "english": "Payload Website Template",
+      "id": "pages.homeStatic.hero.richText.root.children.0.children.0.text",
+      "persian": "قالب وب‌سایت Payload",
+      "source": {
+        "document": "pages.homeStatic",
+        "kind": "seed",
+        "path": "$.hero.richText.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "Visit the admin dashboard",
+      "id": "pages.homeStatic.hero.richText.root.children.1.children.0.children.0.text",
+      "persian": "به داشبورد مدیریت بروید",
+      "source": {
+        "document": "pages.homeStatic",
+        "kind": "seed",
+        "path": "$.hero.richText.root.children[1].children[0].children[0].text"
+      }
+    },
+    {
+      "english": "to make your account and seed content for your website.",
+      "id": "pages.homeStatic.hero.richText.root.children.1.children.1.text",
+      "persian": "تا حساب خود را بسازید و محتوای اولیه وب‌سایتتان را ایجاد کنید.",
+      "source": {
+        "document": "pages.homeStatic",
+        "kind": "seed",
+        "path": "$.hero.richText.root.children[1].children[1].text"
+      }
+    },
+    {
+      "english": "Payload Website Template",
+      "id": "pages.homeStatic.meta.title",
+      "persian": "قالب وب‌سایت Payload",
+      "source": {
+        "document": "pages.homeStatic",
+        "kind": "seed",
+        "path": "$.meta.title"
+      }
+    },
+    {
+      "english": "Home",
+      "id": "pages.homeStatic.title",
+      "persian": "خانه",
+      "source": {
+        "document": "pages.homeStatic",
+        "kind": "seed",
+        "path": "$.title"
+      }
+    },
+    {
+      "english": "Dive into the marvels of modern innovation, where the only constant is change. A journey where pixels and data converge to craft the future.",
+      "id": "posts.digitalHorizons.content.root.children.0.children.0.text",
+      "persian": "در شگفتی‌های نوآوری مدرن غوطه‌ور شوید؛ جایی که تنها چیز ثابت، تغییر است. سفری که در آن پیکسل‌ها و داده‌ها به هم می‌پیوندند تا آینده را بسازند.",
+      "source": {
+        "document": "posts.digitalHorizons",
+        "kind": "seed",
+        "path": "$.content.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "This content is fabricated and for demonstration purposes only. To edit this post,",
+      "id": "posts.digitalHorizons.content.root.children.1.fields.content.root.children.0.children.1.text",
+      "persian": "این محتوا ساختگی است و فقط برای نمایش نمونه استفاده می‌شود. برای ویرایش این نوشته،",
+      "source": {
+        "document": "posts.digitalHorizons",
+        "kind": "seed",
+        "path": "$.content.root.children[1].fields.content.root.children[0].children[1].text"
+      }
+    },
+    {
+      "english": "navigate to the admin dashboard",
+      "id": "posts.digitalHorizons.content.root.children.1.fields.content.root.children.0.children.2.children.0.text",
+      "persian": "به داشبورد مدیریت بروید",
+      "source": {
+        "document": "posts.digitalHorizons",
+        "kind": "seed",
+        "path": "$.content.root.children[1].fields.content.root.children[0].children[2].children[0].text"
+      }
+    },
+    {
+      "english": "The Rise of AI and Machine Learning",
+      "id": "posts.digitalHorizons.content.root.children.2.children.0.text",
+      "persian": "ظهور هوش مصنوعی و یادگیری ماشین",
+      "source": {
+        "document": "posts.digitalHorizons",
+        "kind": "seed",
+        "path": "$.content.root.children[2].children[0].text"
+      }
+    },
+    {
+      "english": "We find ourselves in a transformative era where artificial intelligence (AI) stands at the forefront of technological evolution. The ripple effects of its advancements are reshaping industries at an unprecedented pace. No longer are businesses bound by the limitations of tedious, manual processes. Instead, sophisticated machines, fueled by vast amounts of historical data, are now capable of making decisions previously left to human intuition. These intelligent systems are not only optimizing operations but also pioneering innovative approaches, heralding a new age of business transformation worldwide.",
+      "id": "posts.digitalHorizons.content.root.children.3.children.0.text",
+      "persian": "ما در دوره‌ای تحول‌آفرین قرار داریم که در آن هوش مصنوعی (AI) در خط مقدم تکامل فناوری ایستاده است. اثرات پیشرفت‌های آن با سرعتی بی‌سابقه صنایع را بازآفرینی می‌کند. کسب‌وکارها دیگر به محدودیت‌های فرایندهای دستی و زمان‌بر وابسته نیستند؛ بلکه ماشین‌های پیشرفته، با تکیه بر حجم عظیمی از داده‌های تاریخی، اکنون می‌توانند تصمیم‌هایی بگیرند که پیش‌تر به شهود انسانی سپرده می‌شد. این سیستم‌های هوشمند نه‌تنها عملیات را بهینه می‌کنند، بلکه رویکردهای نوآورانه‌ای را پیش می‌برند و نویدبخش عصر تازه‌ای از تحول کسب‌وکار در سراسر جهان هستند.",
+      "source": {
+        "document": "posts.digitalHorizons",
+        "kind": "seed",
+        "path": "$.content.root.children[3].children[0].text"
+      }
+    },
+    {
+      "english": "To demonstrate basic AI functionality, here is a javascript snippet that makes a POST request to a generic AI API in order to generate text based on a prompt.",
+      "id": "posts.digitalHorizons.content.root.children.4.children.0.text",
+      "persian": "برای نمایش قابلیت پایه هوش مصنوعی، در اینجا یک قطعه کد جاوااسکریپت آمده است که برای تولید متن بر اساس یک پرامپت، یک درخواست POST به یک API عمومی هوش مصنوعی ارسال می‌کند.",
+      "source": {
+        "document": "posts.digitalHorizons",
+        "kind": "seed",
+        "path": "$.content.root.children[4].children[0].text"
+      }
+    },
+    {
+      "english": "In today's rapidly evolving technological landscape, the Internet of Things (IoT) stands out as a revolutionary force. From transforming our residences with smart home systems to redefining transportation through connected cars, IoT's influence is palpable in nearly every facet of our daily lives.",
+      "id": "posts.digitalHorizons.content.root.children.7.children.0.text",
+      "persian": "در چشم‌انداز فناوری که امروز با سرعت زیادی در حال تحول است، اینترنت اشیا (IoT) به‌عنوان نیرویی انقلابی برجسته شده است. از دگرگون‌کردن خانه‌های ما با سیستم‌های خانه هوشمند تا بازتعریف حمل‌ونقل از طریق خودروهای متصل، تاثیر اینترنت اشیا تقریبا در همه جنبه‌های زندگی روزمره ما قابل لمس است.",
+      "source": {
+        "document": "posts.digitalHorizons",
+        "kind": "seed",
+        "path": "$.content.root.children[7].children[0].text"
+      }
+    },
+    {
+      "english": "This technology hinges on the seamless integration of devices and systems, allowing them to communicate and collaborate effortlessly. With each connected device, we move a step closer to a world where convenience and efficiency are embedded in the very fabric of our existence. As a result, we're transitioning into an era where our surroundings intuitively respond to our needs, heralding a smarter and more interconnected global community.",
+      "id": "posts.digitalHorizons.content.root.children.8.children.0.text",
+      "persian": "این فناوری بر یکپارچگی بی‌وقفه دستگاه‌ها و سیستم‌ها تکیه دارد و به آن‌ها امکان می‌دهد به‌سادگی با یکدیگر ارتباط برقرار کرده و همکاری کنند. با هر دستگاه متصل، یک گام به جهانی نزدیک‌تر می‌شویم که در آن آسایش و کارایی در تار و پود زندگی ما تنیده شده است. در نتیجه، در حال ورود به عصری هستیم که محیط پیرامونمان به‌صورت هوشمندانه به نیازهای ما پاسخ می‌دهد و جامعه‌ای جهانی، هوشمندتر و به‌هم‌پیوسته‌تر را نوید می‌دهد.",
+      "source": {
+        "document": "posts.digitalHorizons",
+        "kind": "seed",
+        "path": "$.content.root.children[8].children[0].text"
+      }
+    },
+    {
+      "english": "This content above is completely dynamic using custom layout building blocks configured in the CMS. This can be anything you'd like from rich text and images, to highly designed, complex components.",
+      "id": "posts.digitalHorizons.content.root.children.10.fields.content.root.children.0.children.0.text",
+      "persian": "محتوای بالا با استفاده از بلوک‌های چیدمان سفارشی که در CMS پیکربندی شده‌اند کاملا پویا است. این محتوا می‌تواند هر چیزی باشد؛ از متن غنی و تصویر گرفته تا کامپوننت‌های پیچیده و کاملا طراحی‌شده.",
+      "source": {
+        "document": "posts.digitalHorizons",
+        "kind": "seed",
+        "path": "$.content.root.children[10].fields.content.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "Dive into the marvels of modern innovation, where the only constant is change. A journey where pixels and data converge to craft the future.",
+      "id": "posts.digitalHorizons.meta.description",
+      "persian": "در شگفتی‌های نوآوری مدرن غوطه‌ور شوید؛ جایی که تنها چیز ثابت، تغییر است. سفری که در آن پیکسل‌ها و داده‌ها به هم می‌پیوندند تا آینده را بسازند.",
+      "source": {
+        "document": "posts.digitalHorizons",
+        "kind": "seed",
+        "path": "$.meta.description"
+      }
+    },
+    {
+      "english": "This content is fabricated and for demonstration purposes only. To edit this post,",
+      "id": "posts.dollarAndSense.content.root.children.0.fields.content.root.children.0.children.1.text",
+      "persian": "این محتوا ساختگی است و فقط برای نمایش نمونه استفاده می‌شود. برای ویرایش این نوشته،",
+      "source": {
+        "document": "posts.dollarAndSense",
+        "kind": "seed",
+        "path": "$.content.root.children[0].fields.content.root.children[0].children[1].text"
+      }
+    },
+    {
+      "english": "navigate to the admin dashboard.",
+      "id": "posts.dollarAndSense.content.root.children.0.fields.content.root.children.0.children.2.children.0.text",
+      "persian": "به داشبورد مدیریت بروید.",
+      "source": {
+        "document": "posts.dollarAndSense",
+        "kind": "seed",
+        "path": "$.content.root.children[0].fields.content.root.children[0].children[2].children[0].text"
+      }
+    },
+    {
+      "english": "Money isn't just currency;",
+      "id": "posts.dollarAndSense.content.root.children.1.children.0.text",
+      "persian": "پول فقط یک واحد مبادله نیست؛",
+      "source": {
+        "document": "posts.dollarAndSense",
+        "kind": "seed",
+        "path": "$.content.root.children[1].children[0].text"
+      }
+    },
+    {
+      "english": "it's a language.",
+      "id": "posts.dollarAndSense.content.root.children.1.children.1.text",
+      "persian": "بلکه یک زبان است.",
+      "source": {
+        "document": "posts.dollarAndSense",
+        "kind": "seed",
+        "path": "$.content.root.children[1].children[1].text"
+      }
+    },
+    {
+      "english": "Dive deep into its nuances, where strategy meets intuition in the vast sea of finance.",
+      "id": "posts.dollarAndSense.content.root.children.1.children.2.text",
+      "persian": "در ظرافت‌های آن عمیق شوید؛ جایی که استراتژی در دریای گسترده مالی با شهود تلاقی می‌کند.",
+      "source": {
+        "document": "posts.dollarAndSense",
+        "kind": "seed",
+        "path": "$.content.root.children[1].children[2].text"
+      }
+    },
+    {
+      "english": "Money, in its essence, transcends the mere concept of coins and paper notes; it becomes a profound language that speaks of value, trust, and societal structures. Like any language, it possesses intricate nuances and subtleties that require a discerning understanding. It's in these depths where the calculated world of financial strategy collides with the raw, instinctive nature of human intuition. Just as a seasoned linguist might dissect the syntax and semantics of a sentence, a financial expert navigates the vast and tumultuous ocean of finance, guided not only by logic and data but also by gut feelings and foresight. Every transaction, investment, and financial decision becomes a dialogue in this expansive lexicon of commerce and value.",
+      "id": "posts.dollarAndSense.content.root.children.2.children.0.text",
+      "persian": "پول در ماهیت خود از مفهوم ساده سکه و اسکناس فراتر می‌رود؛ به زبانی عمیق تبدیل می‌شود که از ارزش، اعتماد و ساختارهای اجتماعی سخن می‌گوید. مانند هر زبان دیگری، ظرافت‌ها و نکات پیچیده‌ای دارد که درک دقیق می‌طلبد. در همین عمق است که جهان حساب‌شده استراتژی مالی با ماهیت خام و غریزی شهود انسانی برخورد می‌کند. همان‌طور که یک زبان‌شناس باتجربه ساختار و معنای یک جمله را تحلیل می‌کند، یک متخصص مالی نیز در اقیانوس گسترده و پرتلاطم مالی حرکت می‌کند؛ نه‌تنها با منطق و داده، بلکه با حس درونی و آینده‌نگری. هر تراکنش، سرمایه‌گذاری و تصمیم مالی به گفت‌وگویی در این واژگان گسترده تجارت و ارزش تبدیل می‌شود.",
+      "source": {
+        "document": "posts.dollarAndSense",
+        "kind": "seed",
+        "path": "$.content.root.children[2].children[0].text"
+      }
+    },
+    {
+      "english": "Stock Market Dynamics: Bulls, Bears, and the Uncertain Middle",
+      "id": "posts.dollarAndSense.content.root.children.4.children.0.text",
+      "persian": "پویایی بازار سهام: گاوها، خرس‌ها و میانه نامطمئن",
+      "source": {
+        "document": "posts.dollarAndSense",
+        "kind": "seed",
+        "path": "$.content.root.children[4].children[0].text"
+      }
+    },
+    {
+      "english": "The stock market is a realm of vast opportunity but also poses risks. Discover the forces that drive market trends and the strategies employed by top traders to navigate this complex ecosystem. From market analysis to understanding investor psychology, get a comprehensive insight into the world of stocks.",
+      "id": "posts.dollarAndSense.content.root.children.5.children.0.text",
+      "persian": "بازار سهام قلمرویی سرشار از فرصت‌های گسترده است، اما ریسک‌های خود را نیز دارد. نیروهایی را بشناسید که روندهای بازار را شکل می‌دهند و استراتژی‌هایی را کشف کنید که معامله‌گران برتر برای حرکت در این اکوسیستم پیچیده به کار می‌گیرند. از تحلیل بازار تا شناخت روان‌شناسی سرمایه‌گذاران، نگاهی جامع به دنیای سهام به دست آورید.",
+      "source": {
+        "document": "posts.dollarAndSense",
+        "kind": "seed",
+        "path": "$.content.root.children[5].children[0].text"
+      }
+    },
+    {
+      "english": "The stock market, often visualized as a bustling arena of numbers and ticker tapes, is as much about human behavior as it is about economics. It's a place where optimism, represented by the bullish rally, meets the caution of bearish downturns, with each vying to dictate the market's direction. But between these two extremes lies an uncertain middle ground, a zone populated by traders and investors who constantly weigh hope against fear. Successful navigation requires more than just financial acumen; it demands an understanding of collective sentiments and the ability to predict not just market movements, but also the reactions of other market participants. In this intricate dance of numbers and nerves, the most astute players are those who master both the hard data and the soft nuances of human behavior.",
+      "id": "posts.dollarAndSense.content.root.children.6.children.0.text",
+      "persian": "بازار سهام که اغلب به‌صورت صحنه‌ای پرهیاهو از اعداد و نوارهای قیمت تصور می‌شود، به همان اندازه که به اقتصاد مربوط است، به رفتار انسانی نیز وابسته است. جایی است که خوش‌بینی، با رالی صعودی نمادین می‌شود و با احتیاط روندهای نزولی روبه‌رو می‌گردد؛ هر کدام تلاش می‌کنند مسیر بازار را تعیین کنند. اما میان این دو قطب، محدوده‌ای نامطمئن قرار دارد؛ جایی که معامله‌گران و سرمایه‌گذاران پیوسته امید را در برابر ترس می‌سنجند. حرکت موفق در این فضا تنها به دانش مالی نیاز ندارد؛ بلکه مستلزم درک احساسات جمعی و توانایی پیش‌بینی نه فقط حرکت بازار، بلکه واکنش سایر بازیگران بازار است. در این رقص پیچیده اعداد و احساسات، هوشمندترین بازیگران کسانی هستند که هم داده‌های سخت و هم ظرافت‌های نرم رفتار انسانی را به‌خوبی درک می‌کنند.",
+      "source": {
+        "document": "posts.dollarAndSense",
+        "kind": "seed",
+        "path": "$.content.root.children[6].children[0].text"
+      }
+    },
+    {
+      "english": "This content above is completely dynamic using custom layout building blocks configured in the CMS. This can be anything you'd like from rich text and images, to highly designed, complex components.",
+      "id": "posts.dollarAndSense.content.root.children.7.fields.content.root.children.0.children.0.text",
+      "persian": "محتوای بالا با استفاده از بلوک‌های چیدمان سفارشی که در CMS پیکربندی شده‌اند کاملا پویا است. این محتوا می‌تواند هر چیزی باشد؛ از متن غنی و تصویر گرفته تا کامپوننت‌های پیچیده و کاملا طراحی‌شده.",
+      "source": {
+        "document": "posts.dollarAndSense",
+        "kind": "seed",
+        "path": "$.content.root.children[7].fields.content.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "Money isn't just currency; it's a language. Dive deep into its nuances, where strategy meets intuition in the vast sea of finance.",
+      "id": "posts.dollarAndSense.meta.description",
+      "persian": "پول فقط یک واحد مبادله نیست؛ بلکه یک زبان است. در ظرافت‌های آن عمیق شوید؛ جایی که استراتژی در دریای گسترده مالی با شهود تلاقی می‌کند.",
+      "source": {
+        "document": "posts.dollarAndSense",
+        "kind": "seed",
+        "path": "$.meta.description"
+      }
+    },
+    {
+      "english": "Explore the untold and overlooked. A magnified view into the corners of the world, where every story deserves its spotlight.",
+      "id": "posts.globalGaze.content.root.children.0.children.0.text",
+      "persian": "ناگفته‌ها و نادیده‌ها را کشف کنید. نگاهی بزرگ‌نمایی‌شده به گوشه‌های جهان؛ جایی که هر داستان شایسته دیده‌شدن است.",
+      "source": {
+        "document": "posts.globalGaze",
+        "kind": "seed",
+        "path": "$.content.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "This content is fabricated and for demonstration purposes only. To edit this post,",
+      "id": "posts.globalGaze.content.root.children.1.fields.content.root.children.0.children.1.text",
+      "persian": "این محتوا ساختگی است و فقط برای نمایش نمونه استفاده می‌شود. برای ویرایش این نوشته،",
+      "source": {
+        "document": "posts.globalGaze",
+        "kind": "seed",
+        "path": "$.content.root.children[1].fields.content.root.children[0].children[1].text"
+      }
+    },
+    {
+      "english": "navigate to the admin dashboard.",
+      "id": "posts.globalGaze.content.root.children.1.fields.content.root.children.0.children.2.children.0.text",
+      "persian": "به داشبورد مدیریت بروید.",
+      "source": {
+        "document": "posts.globalGaze",
+        "kind": "seed",
+        "path": "$.content.root.children[1].fields.content.root.children[0].children[2].children[0].text"
+      }
+    },
+    {
+      "english": "Throughout history, regions across the globe have faced the devastating impact of natural disasters, the turbulence of political unrest, and the challenging ripples of economic downturns. In these moments of profound crisis, an often-underestimated force emerges: the indomitable resilience of the human spirit. These aren't just tales of mere survival, but stories of communities forging bonds, uniting with a collective purpose, and demonstrating an innate ability to overcome.",
+      "id": "posts.globalGaze.content.root.children.3.children.0.text",
+      "persian": "در طول تاریخ، مناطق مختلف جهان با اثرات ویرانگر بلایای طبیعی، آشفتگی ناآرامی‌های سیاسی و پیامدهای دشوار رکودهای اقتصادی روبه‌رو شده‌اند. در این لحظات بحران عمیق، نیرویی که اغلب دست‌کم گرفته می‌شود پدیدار می‌گردد: تاب‌آوری شکست‌ناپذیر روح انسان. این‌ها فقط روایت‌هایی از بقا نیستند، بلکه داستان‌هایی از جوامعی هستند که پیوند می‌سازند، حول هدفی مشترک متحد می‌شوند و توانایی ذاتی خود برای عبور از سختی‌ها را نشان می‌دهند.",
+      "source": {
+        "document": "posts.globalGaze",
+        "kind": "seed",
+        "path": "$.content.root.children[3].children[0].text"
+      }
+    },
+    {
+      "english": "From neighbors forming makeshift rescue teams during floods to entire cities rallying to rebuild after economic collapse, the essence of humanity is most evident in these acts of solidarity. As we delve into these narratives, we witness the transformative power of community spirit, where adversity becomes a catalyst for growth, unity, and a brighter, rebuilt future.",
+      "id": "posts.globalGaze.content.root.children.5.children.0.text",
+      "persian": "از همسایگانی که هنگام سیل گروه‌های نجات موقت تشکیل می‌دهند تا شهرهایی که پس از فروپاشی اقتصادی برای بازسازی بسیج می‌شوند، جوهر انسانیت بیش از هر جا در این کنش‌های همبستگی آشکار می‌شود. با ورود به این روایت‌ها، قدرت تحول‌آفرین روح جمعی را می‌بینیم؛ جایی که سختی به محرکی برای رشد، اتحاد و آینده‌ای روشن‌تر و بازساخته تبدیل می‌شود.",
+      "source": {
+        "document": "posts.globalGaze",
+        "kind": "seed",
+        "path": "$.content.root.children[5].children[0].text"
+      }
+    },
+    {
+      "english": "This content above is completely dynamic using custom layout building blocks configured in the CMS. This can be anything you'd like from rich text and images, to highly designed, complex components.",
+      "id": "posts.globalGaze.content.root.children.6.fields.content.root.children.0.children.0.text",
+      "persian": "محتوای بالا با استفاده از بلوک‌های چیدمان سفارشی که در CMS پیکربندی شده‌اند کاملا پویا است. این محتوا می‌تواند هر چیزی باشد؛ از متن غنی و تصویر گرفته تا کامپوننت‌های پیچیده و کاملا طراحی‌شده.",
+      "source": {
+        "document": "posts.globalGaze",
+        "kind": "seed",
+        "path": "$.content.root.children[6].fields.content.root.children[0].children[0].text"
+      }
+    },
+    {
+      "english": "Explore the untold and overlooked. A magnified view into the corners of the world, where every story deserves its spotlight.",
+      "id": "posts.globalGaze.meta.description",
+      "persian": "ناگفته‌ها و نادیده‌ها را کشف کنید. نگاهی بزرگ‌نمایی‌شده به گوشه‌های جهان؛ جایی که هر داستان شایسته دیده‌شدن است.",
+      "source": {
+        "document": "posts.globalGaze",
+        "kind": "seed",
+        "path": "$.meta.description"
+      }
+    },
+    {
+      "english": "Dashboard",
+      "id": "ui.dictionary.admin.dashboard",
+      "persian": "داشبورد",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.admin.dashboard"
+      }
+    },
+    {
+      "english": "Page",
+      "id": "ui.dictionary.admin.page",
+      "persian": "صفحه",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.admin.page"
+      }
+    },
+    {
+      "english": "Pages",
+      "id": "ui.dictionary.admin.pages",
+      "persian": "صفحه‌ها",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.admin.pages"
+      }
+    },
+    {
+      "english": "Post",
+      "id": "ui.dictionary.admin.post",
+      "persian": "نوشته",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.admin.post"
+      }
+    },
+    {
+      "english": "Posts",
+      "id": "ui.dictionary.admin.posts",
+      "persian": "نوشته‌ها",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.admin.posts"
+      }
+    },
+    {
+      "english": "Project",
+      "id": "ui.dictionary.admin.project",
+      "persian": "پروژه",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.admin.project"
+      }
+    },
+    {
+      "english": "Projects",
+      "id": "ui.dictionary.admin.projects",
+      "persian": "پروژه‌ها",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.admin.projects"
+      }
+    },
+    {
+      "english": "Copied!",
+      "id": "ui.dictionary.common.copied",
+      "persian": "کپی شد!",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.common.copied"
+      }
+    },
+    {
+      "english": "Copy",
+      "id": "ui.dictionary.common.copy",
+      "persian": "کپی",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.common.copy"
+      }
+    },
+    {
+      "english": "Loading, please wait...",
+      "id": "ui.dictionary.common.loading",
+      "persian": "در حال بارگذاری، لطفا صبر کنید...",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.common.loading"
+      }
+    },
+    {
+      "english": "No image",
+      "id": "ui.dictionary.common.noImage",
+      "persian": "بدون تصویر",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.common.noImage"
+      }
+    },
+    {
+      "english": "submit",
+      "id": "ui.dictionary.common.submit",
+      "persian": "ارسال",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.common.submit"
+      }
+    },
+    {
+      "english": "Internal Server Error",
+      "id": "ui.dictionary.errors.internalServerError",
+      "persian": "خطای داخلی سرور",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.errors.internalServerError"
+      }
+    },
+    {
+      "english": "Something went wrong.",
+      "id": "ui.dictionary.errors.somethingWentWrong",
+      "persian": "مشکلی پیش آمد.",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.errors.somethingWentWrong"
+      }
+    },
+    {
+      "english": "This field is required",
+      "id": "ui.dictionary.form.required",
+      "persian": "پر کردن این فیلد الزامی است",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.form.required"
+      }
+    },
+    {
+      "english": "Select a language",
+      "id": "ui.dictionary.language.label",
+      "persian": "انتخاب زبان",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.language.label"
+      }
+    },
+    {
+      "english": "Language",
+      "id": "ui.dictionary.language.placeholder",
+      "persian": "زبان",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.language.placeholder"
+      }
+    },
+    {
+      "english": "Payload Logo",
+      "id": "ui.dictionary.logo.alt",
+      "persian": "لوگوی Payload",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.logo.alt"
+      }
+    },
+    {
+      "english": "Next",
+      "id": "ui.dictionary.pagination.next",
+      "persian": "بعدی",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.pagination.next"
+      }
+    },
+    {
+      "english": "Previous",
+      "id": "ui.dictionary.pagination.previous",
+      "persian": "قبلی",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.pagination.previous"
+      }
+    },
+    {
+      "english": "Author",
+      "id": "ui.dictionary.postHero.author",
+      "persian": "نویسنده",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.postHero.author"
+      }
+    },
+    {
+      "english": "Date Published",
+      "id": "ui.dictionary.postHero.datePublished",
+      "persian": "تاریخ انتشار",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.postHero.datePublished"
+      }
+    },
+    {
+      "english": "Untitled category",
+      "id": "ui.dictionary.postHero.untitledCategory",
+      "persian": "دسته‌بندی بدون عنوان",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.postHero.untitledCategory"
+      }
+    },
+    {
+      "english": "Posts",
+      "id": "ui.dictionary.posts.title",
+      "persian": "نوشته‌ها",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.posts.title"
+      }
+    },
+    {
+      "english": "Doc",
+      "id": "ui.dictionary.range.doc",
+      "persian": "مورد",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.range.doc"
+      }
+    },
+    {
+      "english": "Docs",
+      "id": "ui.dictionary.range.docs",
+      "persian": "مورد",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.range.docs"
+      }
+    },
+    {
+      "english": "of",
+      "id": "ui.dictionary.range.of",
+      "persian": "از",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.range.of"
+      }
+    },
+    {
+      "english": "Showing",
+      "id": "ui.dictionary.range.showing",
+      "persian": "نمایش",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.range.showing"
+      }
+    },
+    {
+      "english": "No results found.",
+      "id": "ui.dictionary.search.noResults",
+      "persian": "نتیجه‌ای پیدا نشد.",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.search.noResults"
+      }
+    },
+    {
+      "english": "Search",
+      "id": "ui.dictionary.search.placeholder",
+      "persian": "جستجو",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.search.placeholder"
+      }
+    },
+    {
+      "english": "Search produced no results.",
+      "id": "ui.dictionary.search.producedNoResults",
+      "persian": "جستجو نتیجه‌ای نداشت.",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.search.producedNoResults"
+      }
+    },
+    {
+      "english": "Search",
+      "id": "ui.dictionary.search.title",
+      "persian": "جستجو",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.search.title"
+      }
+    },
+    {
+      "english": "Auto",
+      "id": "ui.dictionary.theme.auto",
+      "persian": "خودکار",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.theme.auto"
+      }
+    },
+    {
+      "english": "Dark",
+      "id": "ui.dictionary.theme.dark",
+      "persian": "تیره",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.theme.dark"
+      }
+    },
+    {
+      "english": "Select a theme",
+      "id": "ui.dictionary.theme.label",
+      "persian": "انتخاب پوسته",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.theme.label"
+      }
+    },
+    {
+      "english": "Light",
+      "id": "ui.dictionary.theme.light",
+      "persian": "روشن",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.theme.light"
+      }
+    },
+    {
+      "english": "Theme",
+      "id": "ui.dictionary.theme.placeholder",
+      "persian": "پوسته",
+      "source": {
+        "document": "ui.dictionary",
+        "kind": "ui",
+        "path": "$.theme.placeholder"
+      }
+    }
+  ]
+}

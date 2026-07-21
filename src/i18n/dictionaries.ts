@@ -1,0 +1,134 @@
+import type { Locale } from './config'
+
+export const dictionaries = {
+  en: {
+  "admin": {
+    "dashboard": "Dashboard",
+    "page": "Page",
+    "pages": "Pages",
+    "post": "Post",
+    "posts": "Posts",
+    "project": "Project",
+    "projects": "Projects"
+  },
+  "common": {
+    "copied": "Copied!",
+    "copy": "Copy",
+    "loading": "Loading, please wait...",
+    "noImage": "No image",
+    "submit": "submit"
+  },
+  "errors": {
+    "internalServerError": "Internal Server Error",
+    "somethingWentWrong": "Something went wrong."
+  },
+  "form": {
+    "required": "This field is required"
+  },
+  "language": {
+    "label": "Select a language",
+    "placeholder": "Language"
+  },
+  "logo": {
+    "alt": "Payload Logo"
+  },
+  "pagination": {
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "postHero": {
+    "author": "Author",
+    "datePublished": "Date Published",
+    "untitledCategory": "Untitled category"
+  },
+  "posts": {
+    "title": "Posts"
+  },
+  "range": {
+    "doc": "Doc",
+    "docs": "Docs",
+    "of": "of",
+    "showing": "Showing"
+  },
+  "search": {
+    "noResults": "No results found.",
+    "placeholder": "Search",
+    "producedNoResults": "Search produced no results.",
+    "title": "Search"
+  },
+  "theme": {
+    "auto": "Auto",
+    "dark": "Dark",
+    "label": "Select a theme",
+    "light": "Light",
+    "placeholder": "Theme"
+  }
+},
+  fa: {
+  "admin": {
+    "dashboard": "داشبورد",
+    "page": "صفحه",
+    "pages": "صفحه‌ها",
+    "post": "نوشته",
+    "posts": "نوشته‌ها",
+    "project": "پروژه",
+    "projects": "پروژه‌ها"
+  },
+  "common": {
+    "copied": "کپی شد!",
+    "copy": "کپی",
+    "loading": "در حال بارگذاری، لطفا صبر کنید...",
+    "noImage": "بدون تصویر",
+    "submit": "ارسال"
+  },
+  "errors": {
+    "internalServerError": "خطای داخلی سرور",
+    "somethingWentWrong": "مشکلی پیش آمد."
+  },
+  "form": {
+    "required": "پر کردن این فیلد الزامی است"
+  },
+  "language": {
+    "label": "انتخاب زبان",
+    "placeholder": "زبان"
+  },
+  "logo": {
+    "alt": "لوگوی Payload"
+  },
+  "pagination": {
+    "next": "بعدی",
+    "previous": "قبلی"
+  },
+  "postHero": {
+    "author": "نویسنده",
+    "datePublished": "تاریخ انتشار",
+    "untitledCategory": "دسته‌بندی بدون عنوان"
+  },
+  "posts": {
+    "title": "نوشته‌ها"
+  },
+  "range": {
+    "doc": "مورد",
+    "docs": "مورد",
+    "of": "از",
+    "showing": "نمایش"
+  },
+  "search": {
+    "noResults": "نتیجه‌ای پیدا نشد.",
+    "placeholder": "جستجو",
+    "producedNoResults": "جستجو نتیجه‌ای نداشت.",
+    "title": "جستجو"
+  },
+  "theme": {
+    "auto": "خودکار",
+    "dark": "تیره",
+    "label": "انتخاب پوسته",
+    "light": "روشن",
+    "placeholder": "پوسته"
+  }
+},
+} as const
+
+export type Dictionary = (typeof dictionaries)[Locale]
+
+export const getDictionary = (locale: Locale): Dictionary => dictionaries[locale]
