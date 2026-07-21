@@ -4,6 +4,8 @@ import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { defaultLexical } from '../../fields/defaultLexical'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
+import { generatePreviewPath } from '../../utilities/generatePreviewPath'
+import { revalidateService, revalidateServiceDelete } from './hooks/revalidateService'
 
 import {
   MetaDescriptionField,
@@ -49,6 +51,20 @@ export const Services: CollectionConfig<'services'> = {
       en: 'Content',
       fa: 'محتوا',
     },
+    livePreview: {
+      url: ({ data, req }) =>
+        generatePreviewPath({
+          slug: data?.slug,
+          collection: 'services',
+          req,
+        }),
+    },
+    preview: (data, { req }) =>
+      generatePreviewPath({
+        slug: data?.slug as string,
+        collection: 'services',
+        req,
+      }),
     useAsTitle: 'title',
   },
   defaultSort: '-updatedAt',
@@ -305,6 +321,8 @@ export const Services: CollectionConfig<'services'> = {
     slugField(),
   ],
   hooks: {
+    afterChange: [revalidateService],
+    afterDelete: [revalidateServiceDelete],
     beforeChange: [populatePublishedAt],
   },
   versions: {

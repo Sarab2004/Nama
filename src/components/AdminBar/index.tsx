@@ -23,8 +23,16 @@ export const AdminBar: React.FC<{
   const segments = useSelectedLayoutSegments()
   const { locale, dictionary } = useLocale()
   const [show, setShow] = useState(false)
-  const collection = segments?.[0] === 'posts' ? 'posts' : 'pages'
+  const collection =
+    segments?.[0] === 'posts' ? 'posts' : segments?.[0] === 'services' ? 'services' : 'pages'
   const router = useRouter()
+
+  const collectionLabels =
+    collection === 'posts'
+      ? { plural: dictionary.admin.posts, singular: dictionary.admin.post }
+      : collection === 'services'
+        ? { plural: dictionary.admin.services, singular: dictionary.admin.service }
+        : { plural: dictionary.admin.pages, singular: dictionary.admin.page }
 
   const onAuthChange = React.useCallback((user: PayloadMeUser) => {
     setShow(Boolean(user?.id))
@@ -48,10 +56,7 @@ export const AdminBar: React.FC<{
           }}
           cmsURL={getClientSideURL()}
           collectionSlug={collection}
-          collectionLabels={{
-            plural: collection === 'posts' ? dictionary.admin.posts : dictionary.admin.pages,
-            singular: collection === 'posts' ? dictionary.admin.post : dictionary.admin.page,
-          }}
+          collectionLabels={collectionLabels}
           logo={<span>{dictionary.admin.dashboard}</span>}
           onAuthChange={onAuthChange}
           onPreviewExit={() => {

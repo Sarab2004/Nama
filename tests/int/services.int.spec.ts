@@ -108,6 +108,9 @@ describe('Services collection', () => {
         ...serviceData(`published-${Date.now()}`),
         _status: 'published',
       },
+      context: {
+        disableRevalidate: true,
+      },
       overrideAccess: false,
       user: admin,
     })
@@ -117,6 +120,9 @@ describe('Services collection', () => {
       data: {
         title: 'Draft service',
         slug: `draft-${Date.now()}`,
+      },
+      context: {
+        disableRevalidate: true,
       },
       draft: true,
       overrideAccess: false,
@@ -132,6 +138,9 @@ describe('Services collection', () => {
       await payload.delete({
         collection: 'services',
         where: { id: { in: serviceIds } },
+        context: {
+          disableRevalidate: true,
+        },
         overrideAccess: true,
       })
     }

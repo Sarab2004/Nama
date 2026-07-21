@@ -47,7 +47,23 @@ Reuses `authenticated` and `authenticatedOrPublished`. Public API readers see pu
 
 ### Ordering
 
-Native collection `orderable` is intentionally deferred. No collection in this repository uses it yet, and enabling it now would add an `_order` schema change before any public listing exists. Within-document array order already covers benefits, steps, audiences, and FAQs. Collection-level drag-and-drop ordering can be enabled later with a focused migration when the services index page is built.
+Native collection `orderable` is intentionally deferred until editors need drag-and-drop listing order. Public listing currently sorts by `-publishedAt` for a stable published order. Within-document array order already covers benefits, steps, audiences, and FAQs.
+
+### Public frontend
+
+Routes live under the locale-aware App Router (middleware maps `/services` → `/fa/services`):
+
+| Route | Behavior |
+| --- | --- |
+| `/services` | Published services only (`draft: false`, `overrideAccess: false`) |
+| `/services/[slug]` | Detail page; unpublished/missing → `notFound` via `PayloadRedirects` |
+| Draft preview | Same `/next/preview` + Draft Mode pattern as Posts/Pages |
+
+Revalidation (afterChange/afterDelete) refreshes `/[locale]/services` and `/[locale]/services/[slug]`, including the previous slug after rename or unpublish.
+
+Metadata uses shared `generateMeta` with service fallbacks (`title`, `shortDescription`, `featuredImage`) and canonical `/services/[slug]`. JSON-LD (`Service` + optional `FAQPage`) is generated at render time from live document data, not stored in Payload.
+
+Consultation CTA links to the existing Contact page (`/contact`) until a dedicated Consultation Requests flow exists. Company phones/emails are not hardcoded in service UI.
 
 ### Projects relationship (future)
 
@@ -58,7 +74,7 @@ Do not store `relatedProjects` on Services. When Projects exists:
 
 ### Out of scope here
 
-Frontend `/services` routes, service cards, preview/livePreview URLs, revalidation hooks for missing routes, Projects collection, and real Nama seed content are deferred to later tasks.
+Projects collection, real Nama seed content, Header/Footer wiring to Company Information, and a dedicated Consultation Requests form remain deferred.
 
 ## Company Information
 

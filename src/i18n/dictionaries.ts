@@ -9,7 +9,9 @@ export const dictionaries = {
     "post": "Post",
     "posts": "Posts",
     "project": "Project",
-    "projects": "Projects"
+    "projects": "Projects",
+    "service": "Service",
+    "services": "Services"
   },
   "common": {
     "copied": "Copied!",
@@ -44,6 +46,22 @@ export const dictionaries = {
   "posts": {
     "title": "Posts"
   },
+  "services": {
+    "audiences": "Who this service is for",
+    "benefits": "Benefits",
+    "ctaDescription": "Share your project needs and our team will follow up through the contact form.",
+    "ctaLabel": "Request consultation",
+    "ctaTitle": "Need a consultation?",
+    "empty": "No published services are available yet.",
+    "faqs": "Frequently asked questions",
+    "home": "Home",
+    "intro": "Explore the services we provide for industrial and engineering projects.",
+    "metaDescription": "Browse published industrial services, process details, audiences, and FAQs.",
+    "processSteps": "How we deliver",
+    "step": "Step",
+    "title": "Services",
+    "viewDetails": "View details"
+  },
   "range": {
     "doc": "Doc",
     "docs": "Docs",
@@ -72,7 +90,9 @@ export const dictionaries = {
     "post": "نوشته",
     "posts": "نوشته‌ها",
     "project": "پروژه",
-    "projects": "پروژه‌ها"
+    "projects": "پروژه‌ها",
+    "service": "خدمت",
+    "services": "خدمات"
   },
   "common": {
     "copied": "کپی شد!",
@@ -106,6 +126,22 @@ export const dictionaries = {
   },
   "posts": {
     "title": "نوشته‌ها"
+  },
+  "services": {
+    "audiences": "مخاطبان این خدمت",
+    "benefits": "مزایا",
+    "ctaDescription": "نیاز پروژه خود را از طریق صفحه تماس ارسال کنید تا تیم ما پیگیری کند.",
+    "ctaLabel": "درخواست مشاوره",
+    "ctaTitle": "به مشاوره نیاز دارید؟",
+    "empty": "در حال حاضر خدمت منتشرشده‌ای برای نمایش وجود ندارد.",
+    "faqs": "سؤالات متداول",
+    "home": "خانه",
+    "intro": "خدمات صنعتی و مهندسی ما را مشاهده کنید.",
+    "metaDescription": "فهرست خدمات منتشرشده، جزئیات اجرا، مخاطبان و سؤالات متداول.",
+    "processSteps": "مراحل اجرا",
+    "step": "مرحله",
+    "title": "خدمات",
+    "viewDetails": "مشاهده جزئیات"
   },
   "range": {
     "doc": "مورد",
