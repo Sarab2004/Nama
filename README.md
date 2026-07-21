@@ -1,14 +1,15 @@
 # Nama — Industrial Portfolio CMS
 
-Nama is an industrial portfolio and content management website built with Next.js, Payload CMS, SQLite, and TypeScript. It includes a public-facing website, an authenticated Payload admin panel, configurable pages and posts, media management, SEO, search, drafts, and live preview.
+Nama is an industrial portfolio and content management website built with Next.js, Payload CMS, PostgreSQL, and TypeScript. It includes a public-facing website, an authenticated Payload admin panel, configurable pages and posts, media management, SEO, search, drafts, and live preview.
 
 ## Quick Start
 
-Requirements: Node.js 20+, pnpm 9+, and a local SQLite-compatible setup.
+Requirements: Node.js 20+, pnpm 9+, Docker Desktop, and PostgreSQL 17 for local development.
 
 ```bash
 pnpm install
 Copy-Item .env.example .env   # PowerShell
+docker compose up -d postgres
 pnpm dev
 ```
 
@@ -34,7 +35,7 @@ Useful commands:
 
 ## Configuration
 
-Copy `.env.example` to `.env` and set `PAYLOAD_SECRET`, `NEXT_PUBLIC_SERVER_URL`, and any database or preview secrets required by your deployment. Secrets and the local database are intentionally excluded from Git.
+Copy `.env.example` to `.env`, set the local PostgreSQL and Payload values, then start PostgreSQL with `docker compose up -d postgres`. Secrets and local database files are intentionally excluded from Git. See the [database foundation guide](docs/architecture/database.md) for Development, migration, staging, and production workflows.
 
 ## License
 
@@ -258,13 +259,13 @@ This command will check for any migrations that have not yet been run and try to
 
 ### Docker
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+Use [Docker](https://www.docker.com) to start only the local PostgreSQL service. To do so, follow these steps:
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
+1. Follow the [Quick Start](#quick-start) setup above; Compose reads the PostgreSQL variables from `.env`.
+1. Run `docker compose up -d postgres`.
 1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
+The application continues to run locally with `pnpm dev`; Compose only manages PostgreSQL.
 
 ### Seed
 
