@@ -2,7 +2,7 @@
 
 ## Summary
 
-Nama is a Next.js 16 and Payload CMS 3 industrial portfolio/content-management website. It uses TypeScript, React 19, SQLite, Tailwind CSS, and pnpm.
+Nama is a Next.js 16 and Payload CMS 3 industrial portfolio/content-management website. It uses TypeScript, React 19, PostgreSQL, Tailwind CSS, Docker Compose, and pnpm.
 
 ## Main capabilities
 
@@ -30,10 +30,11 @@ Nama is a Next.js 16 and Payload CMS 3 industrial portfolio/content-management w
 
 1. Install Node.js 20+ and pnpm 9+.
 2. Copy `.env.example` to `.env`.
-3. Set a secure `PAYLOAD_SECRET`.
-4. Run `pnpm install`.
-5. Run `pnpm dev` and open `http://localhost:3000`.
+3. Set secure local values for `PAYLOAD_SECRET` and PostgreSQL.
+4. Run `docker compose up -d postgres`.
+5. Run `pnpm install`.
+6. Run `pnpm dev` and open `http://localhost:3000`.
 
 ## Important safety note
 
-Do not commit `.env`, database files, build output, or uploaded media. These are excluded by `.gitignore`.
+Do not commit `.env`, database files, build output, or uploaded media. These are excluded by `.gitignore`. Use Payload push mode only for local development; use version-controlled migrations for staging and production.
