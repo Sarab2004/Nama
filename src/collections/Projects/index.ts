@@ -5,6 +5,8 @@ import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { defaultLexical } from '../../fields/defaultLexical'
 import { validateDisplayOrder } from '../../fields/validateDisplayOrder'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
+import { generatePreviewPath } from '../../utilities/generatePreviewPath'
+import { revalidateProject, revalidateProjectDelete } from './hooks/revalidateProject'
 
 import {
   MetaDescriptionField,
@@ -56,6 +58,20 @@ export const Projects: CollectionConfig<'projects'> = {
       en: 'Content',
       fa: 'محتوا',
     },
+    livePreview: {
+      url: ({ data, req }) =>
+        generatePreviewPath({
+          slug: data?.slug,
+          collection: 'projects',
+          req,
+        }),
+    },
+    preview: (data, { req }) =>
+      generatePreviewPath({
+        slug: data?.slug as string,
+        collection: 'projects',
+        req,
+      }),
     useAsTitle: 'title',
   },
   defaultSort: 'displayOrder',
@@ -410,6 +426,8 @@ export const Projects: CollectionConfig<'projects'> = {
     slugField(),
   ],
   hooks: {
+    afterChange: [revalidateProject],
+    afterDelete: [revalidateProjectDelete],
     beforeChange: [populatePublishedAt],
   },
   versions: {

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { PayloadRedirects } from '@/components/PayloadRedirects'
+import { ProjectCard, type ProjectCardData } from '@/components/ProjectCard'
 import { ServiceBreadcrumbs } from '@/components/ServiceBreadcrumbs'
 import { ServiceConsultationCTA } from '@/components/ServiceConsultationCTA'
 import { ServiceFAQ } from '@/components/ServiceFAQ'
@@ -57,6 +58,7 @@ export default async function ServicePage({ params: paramsPromise }: Args) {
   const processSteps = (service.processSteps || []).filter((item) => item?.title?.trim())
   const audiences = (service.audiences || []).filter((item) => item?.title?.trim())
   const structuredData = buildServiceStructuredDataScripts(service, url)
+  const relatedProjects = await queryRelatedProjects({ locale, serviceId: service.id })
 
   return (
     <article className="pt-24 pb-24">
@@ -171,6 +173,21 @@ export default async function ServicePage({ params: paramsPromise }: Args) {
 
         <ServiceFAQ faqs={service.faqs || []} title={dictionary.services.faqs} />
 
+        {relatedProjects.length > 0 && (
+          <section aria-labelledby="service-related-projects-heading" className="mb-12">
+            <h2 className="text-2xl font-semibold mb-6" id="service-related-projects-heading">
+              {dictionary.services.relatedProjects}
+            </h2>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0 m-0">
+              {relatedProjects.map((project) => (
+                <li key={project.id}>
+                  <ProjectCard doc={project} viewLabel={dictionary.projects.viewDetails} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <ServiceConsultationCTA
           description={dictionary.services.ctaDescription}
           label={dictionary.services.ctaLabel}
@@ -216,3 +233,40 @@ const queryServiceBySlug = cache(async ({ locale, slug }: { locale: Locale; slug
 
   return result.docs?.[0] || null
 })
+
+const queryRelatedProjects = cache(
+  async ({ locale, serviceId }: { locale: Locale; serviceId: number }) => {
+    const payload = await getPayload({ config: configPromise })
+
+    const result = await payload.find({
+      collection: 'projects',
+      depth: 1,
+      draft: false,
+      fallbackLocale,
+      limit: 6,
+      locale,
+      overrideAccess: false,
+      pagination: false,
+      sort: 'displayOrder,title',
+      where: {
+        services: {
+          contains: serviceId,
+        },
+      },
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        shortDescription: true,
+        featuredImage: true,
+        executionYear: true,
+        location: true,
+        client: true,
+        services: true,
+        displayOrder: true,
+      },
+    })
+
+    return result.docs as ProjectCardData[]
+  },
+)

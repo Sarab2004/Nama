@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 
-import type { Media, Page, Post, Service, Config } from '../payload-types'
+import type { Media, Page, Post, Project, Service, Config } from '../payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
 
-type MetaDoc = Partial<Page> | Partial<Post> | Partial<Service> | null
+type MetaDoc = Partial<Page> | Partial<Post> | Partial<Service> | Partial<Project> | null
 
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL()

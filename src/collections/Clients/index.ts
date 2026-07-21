@@ -53,6 +53,7 @@ export const Clients: CollectionConfig<'clients'> = {
     slug: true,
     logo: true,
     industry: true,
+    website: true,
     shortDescription: true,
     featured: true,
     displayOrder: true,

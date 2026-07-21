@@ -46,6 +46,30 @@ export const dictionaries = {
   "posts": {
     "title": "Posts"
   },
+  "projects": {
+    "client": "Client",
+    "ctaDescription": "Share your project needs and our team will follow up through the contact form.",
+    "ctaLabel": "Request consultation",
+    "ctaTitle": "Need a consultation?",
+    "empty": "No published projects are available yet.",
+    "executionYear": "Execution year",
+    "gallery": "Project gallery",
+    "home": "Home",
+    "intro": "Explore published industrial and engineering projects delivered by our team.",
+    "location": "Location",
+    "metaDescription": "Browse published projects, clients, execution details, and outcomes.",
+    "overview": "Project overview",
+    "problem": "Challenge",
+    "relatedProjects": "Related projects",
+    "relatedServices": "Related services",
+    "results": "Results",
+    "solution": "Solution",
+    "testimonial": "Client testimonial",
+    "title": "Projects",
+    "viewDetails": "View project",
+    "viewDocument": "View supporting document",
+    "visitWebsite": "Visit website"
+  },
   "services": {
     "audiences": "Who this service is for",
     "benefits": "Benefits",
@@ -58,6 +82,7 @@ export const dictionaries = {
     "intro": "Explore the services we provide for industrial and engineering projects.",
     "metaDescription": "Browse published industrial services, process details, audiences, and FAQs.",
     "processSteps": "How we deliver",
+    "relatedProjects": "Related projects",
     "step": "Step",
     "title": "Services",
     "viewDetails": "View details"
@@ -127,6 +152,30 @@ export const dictionaries = {
   "posts": {
     "title": "نوشته‌ها"
   },
+  "projects": {
+    "client": "کارفرما",
+    "ctaDescription": "نیاز پروژه خود را از طریق صفحه تماس ارسال کنید تا تیم ما پیگیری کند.",
+    "ctaLabel": "درخواست مشاوره",
+    "ctaTitle": "به مشاوره نیاز دارید؟",
+    "empty": "در حال حاضر پروژه منتشرشده‌ای برای نمایش وجود ندارد.",
+    "executionYear": "سال اجرا",
+    "gallery": "تصاویر پروژه",
+    "home": "خانه",
+    "intro": "نمونه‌کارهای صنعتی و مهندسی منتشرشده را مشاهده کنید.",
+    "location": "محل اجرا",
+    "metaDescription": "فهرست پروژه‌های منتشرشده، کارفرما، جزئیات اجرا و نتایج.",
+    "overview": "اطلاعات پروژه",
+    "problem": "شرح مسئله",
+    "relatedProjects": "پروژه‌های مرتبط",
+    "relatedServices": "خدمات مرتبط",
+    "results": "نتایج",
+    "solution": "راهکار",
+    "testimonial": "رضایت‌نامه کارفرما",
+    "title": "پروژه‌ها",
+    "viewDetails": "مشاهده پروژه",
+    "viewDocument": "مشاهده فایل پیوست",
+    "visitWebsite": "مشاهده وب‌سایت"
+  },
   "services": {
     "audiences": "مخاطبان این خدمت",
     "benefits": "مزایا",
@@ -139,6 +188,7 @@ export const dictionaries = {
     "intro": "خدمات صنعتی و مهندسی ما را مشاهده کنید.",
     "metaDescription": "فهرست خدمات منتشرشده، جزئیات اجرا، مخاطبان و سؤالات متداول.",
     "processSteps": "مراحل اجرا",
+    "relatedProjects": "پروژه‌های مرتبط",
     "step": "مرحله",
     "title": "خدمات",
     "viewDetails": "مشاهده جزئیات"

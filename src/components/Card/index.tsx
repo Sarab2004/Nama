@@ -9,22 +9,27 @@ import type { Post } from '@/payload-types'
 import { Media } from '@/components/Media'
 import { useLocale } from '@/providers/Locale'
 
-export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'>
+export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'> & {
+  doc?: {
+    relationTo?: 'posts' | 'services' | 'projects'
+  } | null
+}
 
 export const Card: React.FC<{
   alignItems?: 'center'
   className?: string
   doc?: CardPostData
-  relationTo?: 'posts'
+  relationTo?: 'posts' | 'services' | 'projects'
   showCategories?: boolean
   title?: string
 }> = (props) => {
   const { dictionary, locale } = useLocale()
   const { cardRef, linkRef } = useClickableCard({})
-  const { className, doc, relationTo, showCategories, title: titleFromProps } = props
+  const { className, doc, relationTo: relationToProp, showCategories, title: titleFromProps } = props
 
   const { slug, categories, meta, title } = doc || {}
   const { description, image: metaImage } = meta || {}
+  const relationTo = relationToProp || doc?.doc?.relationTo || 'posts'
 
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0
   const titleToUse = titleFromProps || title

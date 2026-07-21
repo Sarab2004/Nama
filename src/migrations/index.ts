@@ -4,6 +4,7 @@ import * as migration_20260721_081404_add_services_redirect_relation from './202
 import * as migration_20260721_095301_add_company_information_global from './20260721_095301_add_company_information_global';
 import * as migration_20260721_132126_add_clients_collection from './20260721_132126_add_clients_collection';
 import * as migration_20260721_134737_add_projects_collection from './20260721_134737_add_projects_collection';
+import * as migration_20260721_143116_add_projects_search_redirect_relations from './20260721_143116_add_projects_search_redirect_relations';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20260721_134737_add_projects_collection.up,
     down: migration_20260721_134737_add_projects_collection.down,
-    name: '20260721_134737_add_projects_collection'
+    name: '20260721_134737_add_projects_collection',
+  },
+  {
+    up: migration_20260721_143116_add_projects_search_redirect_relations.up,
+    down: migration_20260721_143116_add_projects_search_redirect_relations.down,
+    name: '20260721_143116_add_projects_search_redirect_relations'
   },
 ];

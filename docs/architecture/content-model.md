@@ -69,7 +69,7 @@ Consultation CTA links to the existing Contact page (`/contact`) until a dedicat
 
 1. Persist `projects.services` as `relationship` → `services`, `hasMany: true` (source of truth on Project).
 2. Expose inverse on Services as a virtual join: `relatedProjects` with `collection: 'projects'`, `on: 'services'`.
-3. Do **not** store a duplicated project ID array on Services.
+3. Service detail pages render up to 6 published related projects (no draft leakage).
 
 ### Out of scope here
 
@@ -131,11 +131,18 @@ Public `/clients` routes, real Nama client seed content.
 
 ## Projects
 
-`projects` is the CMS source of truth for completed company work. Each Project links to one Client and one or more Services. Public `/projects` routes are deferred.
+`projects` is the CMS source of truth for completed company work. Each Project links to one Client and one or more Services.
 
 ### Responsibility
 
 Editors create draft/published project case studies (overview, narrative, gallery, optional testimonial, SEO). Clients own employer identity (name, logo); Services own service taxonomy. Projects must not duplicate client names as free text and must not invent a separate `serviceType` select — service type comes from the `services` relationship.
+
+Public routes:
+
+| Route | Behavior |
+| --- | --- |
+| `/projects` | Published listing sorted by `displayOrder`, then `title` |
+| `/projects/[slug]` | Detail page; unpublished/missing → `notFound` via `PayloadRedirects` |
 
 ### Fields
 
@@ -144,12 +151,12 @@ Editors create draft/published project case studies (overview, narrative, galler
 | `title` | text (localized) | Required; admin title and slug/SEO base |
 | `slug` | `slugField()` | Unique, indexed, from `title`; manually editable; not localized |
 | `shortDescription` | textarea (localized) | Optional; max 320; cards + SEO fallback |
-| `client` | relationship → `clients` | Required on publish; single; source of employer truth |
-| `services` | relationship → `services`, `hasMany` | Required on publish; stores the Project→Service link only |
+| `client` | relationship → `clients` | Required on publish; single; source of employer truth (top-level for joins) |
+| `services` | relationship → `services`, `hasMany` | Required on publish; stores the Project→Service link only (top-level for joins) |
 | `executionYear` | text (localized) | Required; max ~20; year or range (Jalali/Gregorian), not `number` |
 | `location` | text (localized) | Optional execution place |
-| `featuredImage` | upload → `media` | Optional image for cards/OG/hero later |
-| `problem` / `solution` / `results` | richText via `defaultLexical` (localized) | Narrative sections; no KPI/chart system yet |
+| `featuredImage` | upload → `media` | Optional image for cards/OG/hero |
+| `problem` / `solution` / `results` | richText via `defaultLexical` (localized) | Narrative sections |
 | `gallery[]` | array | `image` (required upload) + `caption` (localized); array order = display order |
 | `testimonial` | group | Optional `quote`, `authorName`, `authorRole`, `document`, `permissionToPublish` |
 | `featured` | checkbox | Default `false`; future homepage picks |
@@ -178,7 +185,7 @@ Not localized: `slug`, `client`, `services`, `featuredImage`, `gallery.image`, `
 
 ### Drafts and publication
 
-Same draft/version pattern as Clients/Services: autosave interval `100`, `schedulePublish`, `maxPerDoc: 50`. Incomplete drafts may omit required relationships until publish. No public Preview URL yet.
+Same draft/version pattern as Clients/Services: autosave interval `100`, `schedulePublish`, `maxPerDoc: 50`. Incomplete drafts may omit required relationships until publish. Preview uses shared `/next/preview` + Draft Mode.
 
 ### Access control
 
@@ -186,18 +193,27 @@ Reuses `authenticated` and `authenticatedOrPublished`. Public readers see publis
 
 ### SEO, Search, Redirects
 
-- SEO plugin generate fallbacks: title ← `title`, description ← `shortDescription`, image ← `featuredImage`, URL ← `/projects/[slug]` (reserved for future public pages).
-- Search plugin does **not** index Projects yet — no public project pages exist.
-- Redirects plugin does not include Projects yet for the same reason.
-- No preview/revalidation hooks for missing `/projects` routes in this phase.
+- SEO plugin generate fallbacks: title ← `title`, description ← `shortDescription`, image ← `featuredImage`, URL ← `/projects/[slug]`.
+- Search plugin indexes Projects alongside Posts/Services through the existing Search collection and `beforeSync` mapping.
+- Redirects plugin includes Projects so slug changes can target the standard Redirects collection.
+- Revalidation refreshes `/[locale]/projects`, `/[locale]/projects/[slug]`, previous slug, and related Service detail paths.
+
+### Frontend rendering notes
+
+- Client identity is rendered from the populated relationship; no link to `/clients/[slug]` yet (route deferred).
+- Related services link only when published and have a slug.
+- Gallery uses stored array order and shared `Media`.
+- Testimonials render only when `permissionToPublish === true`.
+- Structured data uses schema.org `CreativeWork` generated at render time (not stored in Payload).
+- Service detail pages list up to 6 published related projects via a single Projects query (`services contains service.id`).
 
 ### Testimonial / `permissionToPublish`
 
-Testimonials may store quote, author name/role, and an optional image/PDF. Do not store personal contact details. Future public UI must hide testimonials unless `permissionToPublish` is true. Real testimonial content must not be committed to seed/git.
+Testimonials may store quote, author name/role, and an optional image/PDF. Do not store personal contact details. Public UI must hide testimonials unless `permissionToPublish` is true. Real testimonial content must not be committed to seed/git.
 
 ### Out of scope here
 
-Public `/projects` and `/projects/[slug]`, listing projects on Client/Service pages, Search/Redirects/Preview/revalidation for Projects, real project/testimonial seed data.
+Public `/clients` routes, listing projects on Client pages, Consultation Requests, real project/testimonial seed data.
 
 ## Company Information
 
