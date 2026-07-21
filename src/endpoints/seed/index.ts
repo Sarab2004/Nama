@@ -15,6 +15,7 @@ const collections: CollectionSlug[] = [
   'media',
   'pages',
   'posts',
+  'projects',
   'clients',
   'forms',
   'form-submissions',

@@ -1,8 +1,9 @@
-import type { CollectionConfig, NumberFieldSingleValidation, TextFieldSingleValidation } from 'payload'
+import type { CollectionConfig, TextFieldSingleValidation } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { defaultLexical } from '../../fields/defaultLexical'
+import { validateDisplayOrder } from '../../fields/validateDisplayOrder'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 
 import {
@@ -26,14 +27,6 @@ const validateOptionalWebsite: TextFieldSingleValidation = (value) => {
   } catch {
     return 'یک نشانی اینترنتی معتبر وارد کنید.'
   }
-}
-
-const validateDisplayOrder: NumberFieldSingleValidation = (value) => {
-  if (value == null) return true
-  if (typeof value === 'number' && value < 0) {
-    return 'ترتیب نمایش نمی‌تواند منفی باشد.'
-  }
-  return true
 }
 
 export const Clients: CollectionConfig<'clients'> = {
@@ -244,6 +237,20 @@ export const Clients: CollectionConfig<'clients'> = {
     slugField({
       useAsSlug: 'name',
     }),
+    {
+      name: 'projects',
+      type: 'join',
+      label: {
+        en: 'Projects',
+        fa: 'پروژه‌ها',
+      },
+      collection: 'projects',
+      on: 'client',
+      admin: {
+        defaultColumns: ['title', 'executionYear', '_status', 'updatedAt'],
+        description: 'پروژه‌هایی که این کارفرما را به عنوان Client دارند (رابطه مجازی؛ داده روی Projects ذخیره می‌شود).',
+      },
+    },
   ],
   hooks: {
     beforeChange: [populatePublishedAt],

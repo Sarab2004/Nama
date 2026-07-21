@@ -319,6 +319,21 @@ export const Services: CollectionConfig<'services'> = {
       },
     },
     slugField(),
+    {
+      name: 'relatedProjects',
+      type: 'join',
+      label: {
+        en: 'Related projects',
+        fa: 'پروژه‌های مرتبط',
+      },
+      collection: 'projects',
+      on: 'services',
+      admin: {
+        defaultColumns: ['title', 'client', 'executionYear', '_status', 'updatedAt'],
+        description:
+          'پروژه‌هایی که این خدمت را در فیلد services دارند (رابطه مجازی؛ داده روی Projects ذخیره می‌شود).',
+      },
+    },
   ],
   hooks: {
     afterChange: [revalidateService],

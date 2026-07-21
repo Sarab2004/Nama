@@ -10,10 +10,10 @@ import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 
-import { Page, Post, Service, Client } from '@/payload-types'
+import { Page, Post, Service, Client, Project } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
-type SEOContentDocument = Post | Page | Service | Client
+type SEOContentDocument = Post | Page | Service | Client | Project
 
 const getDocumentTitle = (doc: SEOContentDocument) => {
   if ('title' in doc && typeof doc.title === 'string' && doc.title) return doc.title
@@ -45,6 +45,10 @@ const generateURL: GenerateURL<SEOContentDocument> = ({ doc, collectionSlug }) =
 
   if (collectionSlug === 'clients') {
     return doc?.slug ? `${url}/clients/${doc.slug}` : `${url}/clients`
+  }
+
+  if (collectionSlug === 'projects') {
+    return doc?.slug ? `${url}/projects/${doc.slug}` : `${url}/projects`
   }
 
   return doc?.slug ? `${url}/${doc.slug}` : url

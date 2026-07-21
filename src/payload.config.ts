@@ -9,6 +9,7 @@ import { Clients } from './collections/Clients'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
+import { Projects } from './collections/Projects'
 import { Services } from './collections/Services'
 import { Users } from './collections/Users'
 import { CompanyInformation } from './CompanyInformation/config'
@@ -74,7 +75,7 @@ export default buildConfig({
       connectionString: databaseURL,
     },
   }),
-  collections: [Pages, Posts, Services, Clients, Media, Categories, Users],
+  collections: [Pages, Posts, Services, Clients, Projects, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
   localization: {
     defaultLocale,

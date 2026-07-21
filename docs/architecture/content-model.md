@@ -65,24 +65,23 @@ Metadata uses shared `generateMeta` with service fallbacks (`title`, `shortDescr
 
 Consultation CTA links to the existing Contact page (`/contact`) until a dedicated Consultation Requests flow exists. Company phones/emails are not hardcoded in service UI.
 
-### Projects relationship (future)
+### Projects relationship
 
-Do not store `relatedProjects` on Services. When Projects exists:
-
-1. Persist `projects.services` as `relationship` → `services`, `hasMany: true` (source of truth).
+1. Persist `projects.services` as `relationship` → `services`, `hasMany: true` (source of truth on Project).
 2. Expose inverse on Services as a virtual join: `relatedProjects` with `collection: 'projects'`, `on: 'services'`.
+3. Do **not** store a duplicated project ID array on Services.
 
 ### Out of scope here
 
-Projects collection, real Nama seed content, Header/Footer wiring to Company Information, and a dedicated Consultation Requests form remain deferred.
+Real Nama seed content, Header/Footer wiring to Company Information, and a dedicated Consultation Requests form remain deferred.
 
 ## Clients
 
-`clients` is the single source of truth for employers/customers that Projects will reference later.
+`clients` is the single source of truth for employers/customers that Projects reference.
 
 ### Responsibility
 
-Editors create and publish client profiles (name, logo, industry, copy, website, featured flag). Public listing/detail routes are deferred. Projects must relate to Clients via `relationship` → `clients` and must **not** duplicate employer names as free text, unless a future historical snapshot decision is documented separately.
+Editors create and publish client profiles (name, logo, industry, copy, website, featured flag). Public listing/detail routes are deferred. Projects relate to Clients via `relationship` → `clients` and must **not** duplicate employer names as free text, unless a future historical snapshot decision is documented separately.
 
 ### Fields
 
@@ -99,6 +98,7 @@ Editors create and publish client profiles (name, logo, industry, copy, website,
 | `displayOrder` | number (`min: 0`) | Optional manual sort; not native collection `orderable` |
 | `publishedAt` | date | Sidebar; shared `populatePublishedAt` |
 | `meta.*` | SEO plugin fields | Title/description/image + generate fallbacks |
+| `projects` | join → `projects` on `client` | Virtual inverse; not stored on Clients |
 
 ### Localization
 
@@ -119,14 +119,85 @@ Reuses `authenticated` and `authenticatedOrPublished`. Public readers see publis
 - Search plugin does **not** index Clients yet — no public client pages exist. Add later when `/clients` ships.
 - Redirects plugin does not include Clients yet for the same reason.
 
-### Projects relationship (future)
+### Projects relationship
 
 1. Persist `projects.client` as `relationship` → `clients` (source of truth for employer).
-2. Do not store a parallel free-text employer name on Projects unless an explicit historical snapshot requirement appears.
+2. Do not store a parallel free-text employer name on Projects.
+3. Expose inverse on Clients as a virtual join: `projects` with `collection: 'projects'`, `on: 'client'`.
 
 ### Out of scope here
 
-Public `/clients` routes, Projects collection, real Nama client seed content.
+Public `/clients` routes, real Nama client seed content.
+
+## Projects
+
+`projects` is the CMS source of truth for completed company work. Each Project links to one Client and one or more Services. Public `/projects` routes are deferred.
+
+### Responsibility
+
+Editors create draft/published project case studies (overview, narrative, gallery, optional testimonial, SEO). Clients own employer identity (name, logo); Services own service taxonomy. Projects must not duplicate client names as free text and must not invent a separate `serviceType` select — service type comes from the `services` relationship.
+
+### Fields
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `title` | text (localized) | Required; admin title and slug/SEO base |
+| `slug` | `slugField()` | Unique, indexed, from `title`; manually editable; not localized |
+| `shortDescription` | textarea (localized) | Optional; max 320; cards + SEO fallback |
+| `client` | relationship → `clients` | Required on publish; single; source of employer truth |
+| `services` | relationship → `services`, `hasMany` | Required on publish; stores the Project→Service link only |
+| `executionYear` | text (localized) | Required; max ~20; year or range (Jalali/Gregorian), not `number` |
+| `location` | text (localized) | Optional execution place |
+| `featuredImage` | upload → `media` | Optional image for cards/OG/hero later |
+| `problem` / `solution` / `results` | richText via `defaultLexical` (localized) | Narrative sections; no KPI/chart system yet |
+| `gallery[]` | array | `image` (required upload) + `caption` (localized); array order = display order |
+| `testimonial` | group | Optional `quote`, `authorName`, `authorRole`, `document`, `permissionToPublish` |
+| `featured` | checkbox | Default `false`; future homepage picks |
+| `displayOrder` | number (`min: 0`) | Optional manual sort (shared `validateDisplayOrder`) |
+| `publishedAt` | date | Sidebar; shared `populatePublishedAt` |
+| `meta.*` | SEO plugin fields | Title/description/image + generate fallbacks |
+
+### Why no duplicated client name or `serviceType`
+
+- Client name/logo live on `clients`. Snapshotting names onto Projects would drift and create dual sources of truth.
+- Service kind/category is already modeled on `services`. A parallel Project `serviceType` would diverge from the Services taxonomy.
+
+### Inverse joins (virtual only)
+
+| On | Field | Join |
+| --- | --- | --- |
+| Clients | `projects` | `collection: 'projects'`, `on: 'client'` |
+| Services | `relatedProjects` | `collection: 'projects'`, `on: 'services'` |
+
+These joins are virtual. Project IDs are **not** stored as arrays on Clients or Services. The relationship source of truth remains on Project.
+
+### Localization
+
+Localized: `title`, `shortDescription`, `executionYear`, `location`, `problem`, `solution`, `results`, `gallery.caption`, `testimonial.quote`, `testimonial.authorName`, `testimonial.authorRole`, `meta.title`, `meta.description`.  
+Not localized: `slug`, `client`, `services`, `featuredImage`, `gallery.image`, `testimonial.document`, `testimonial.permissionToPublish`, `featured`, `displayOrder`, `publishedAt`, `meta.image`.
+
+### Drafts and publication
+
+Same draft/version pattern as Clients/Services: autosave interval `100`, `schedulePublish`, `maxPerDoc: 50`. Incomplete drafts may omit required relationships until publish. No public Preview URL yet.
+
+### Access control
+
+Reuses `authenticated` and `authenticatedOrPublished`. Public readers see published documents only; drafts and versions require authenticated access. Public API must not use `overrideAccess`.
+
+### SEO, Search, Redirects
+
+- SEO plugin generate fallbacks: title ← `title`, description ← `shortDescription`, image ← `featuredImage`, URL ← `/projects/[slug]` (reserved for future public pages).
+- Search plugin does **not** index Projects yet — no public project pages exist.
+- Redirects plugin does not include Projects yet for the same reason.
+- No preview/revalidation hooks for missing `/projects` routes in this phase.
+
+### Testimonial / `permissionToPublish`
+
+Testimonials may store quote, author name/role, and an optional image/PDF. Do not store personal contact details. Future public UI must hide testimonials unless `permissionToPublish` is true. Real testimonial content must not be committed to seed/git.
+
+### Out of scope here
+
+Public `/projects` and `/projects/[slug]`, listing projects on Client/Service pages, Search/Redirects/Preview/revalidation for Projects, real project/testimonial seed data.
 
 ## Company Information
 

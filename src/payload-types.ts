@@ -71,6 +71,7 @@ export interface Config {
     posts: Post;
     services: Service;
     clients: Client;
+    projects: Project;
     media: Media;
     categories: Category;
     users: User;
@@ -86,6 +87,12 @@ export interface Config {
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {
+    services: {
+      relatedProjects: 'projects';
+    };
+    clients: {
+      projects: 'projects';
+    };
     'payload-folders': {
       documentsAndFolders: 'payload-folders' | 'media';
     };
@@ -95,6 +102,7 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     clients: ClientsSelect<false> | ClientsSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -870,6 +878,139 @@ export interface Service {
    */
   generateSlug?: boolean | null;
   slug: string;
+  /**
+   * پروژه‌هایی که این خدمت را در فیلد services دارند (رابطه مجازی؛ داده روی Projects ذخیره می‌شود).
+   */
+  relatedProjects?: {
+    docs?: (number | Project)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  /**
+   * خلاصه کوتاه برای کارت پروژه و SEO در آینده.
+   */
+  shortDescription?: string | null;
+  /**
+   * کارفرما از Clients انتخاب شود. نام کارفرما را در این Collection تکرار نکنید.
+   */
+  client: number | Client;
+  /**
+   * یک یا چند خدمت از Services. فیلد جداگانه serviceType نسازید؛ نوع خدمت از همین رابطه مشخص می‌شود.
+   */
+  services: (number | Service)[];
+  /**
+   * سال یا بازه؛ مثلاً ۱۴۰۲، ۱۴۰۲ تا ۱۴۰۳، 2023 یا 2023–2024.
+   */
+  executionYear: string;
+  location?: string | null;
+  featuredImage?: (number | null) | Media;
+  problem?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  solution?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * متن، فهرست و اعداد نتایج را اینجا ثبت کنید؛ در این مرحله KPI جداگانه نداریم.
+   */
+  results?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * ترتیب ردیف‌ها همان ترتیب نمایش آینده است.
+   */
+  gallery?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * در فرانت‌اند آینده فقط در صورت فعال بودن «اجازه انتشار عمومی» نمایش داده شود. اطلاعات تماس شخص را ذخیره نکنید.
+   */
+  testimonial?: {
+    quote?: string | null;
+    authorName?: string | null;
+    authorRole?: string | null;
+    /**
+     * تصویر یا PDF رضایت‌نامه (اختیاری).
+     */
+    document?: (number | null) | Media;
+    /**
+     * بدون این گزینه، رضایت‌نامه در صفحات عمومی آینده نمایش داده نشود.
+     */
+    permissionToPublish?: boolean | null;
+  };
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  /**
+   * برای نمایش در صفحه اصلی یا فهرست پروژه‌های منتخب در آینده.
+   */
+  featured?: boolean | null;
+  /**
+   * عدد کوچک‌تر زودتر نمایش داده می‌شود.
+   */
+  displayOrder?: number | null;
+  publishedAt?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -931,6 +1072,14 @@ export interface Client {
    */
   generateSlug?: boolean | null;
   slug: string;
+  /**
+   * پروژه‌هایی که این کارفرما را به عنوان Client دارند (رابطه مجازی؛ داده روی Projects ذخیره می‌شود).
+   */
+  projects?: {
+    docs?: (number | Project)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -1149,6 +1298,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'clients';
         value: number | Client;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: number | Project;
       } | null)
     | ({
         relationTo: 'media';
@@ -1437,6 +1590,7 @@ export interface ServicesSelect<T extends boolean = true> {
   publishedAt?: T;
   generateSlug?: T;
   slug?: T;
+  relatedProjects?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -1452,6 +1606,54 @@ export interface ClientsSelect<T extends boolean = true> {
   shortDescription?: T;
   description?: T;
   website?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  featured?: T;
+  displayOrder?: T;
+  publishedAt?: T;
+  generateSlug?: T;
+  slug?: T;
+  projects?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  title?: T;
+  shortDescription?: T;
+  client?: T;
+  services?: T;
+  executionYear?: T;
+  location?: T;
+  featuredImage?: T;
+  problem?: T;
+  solution?: T;
+  results?: T;
+  gallery?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  testimonial?:
+    | T
+    | {
+        quote?: T;
+        authorName?: T;
+        authorRole?: T;
+        document?: T;
+        permissionToPublish?: T;
+      };
   meta?:
     | T
     | {
@@ -2193,6 +2395,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'clients';
           value: number | Client;
+        } | null)
+      | ({
+          relationTo: 'projects';
+          value: number | Project;
         } | null);
     global?: string | null;
     user?: (number | null) | User;
