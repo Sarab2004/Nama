@@ -11,6 +11,8 @@ Nama uses PostgreSQL through Payload's official `@payloadcms/db-postgres` adapte
 
 The Compose service runs the official `postgres:17` image, persists data in the `postgres_data` named volume, and exposes PostgreSQL only on `127.0.0.1`.
 
+If another PostgreSQL instance already occupies port `5432` on the host (for example a Windows service install), set `POSTGRES_PORT` and the port in `DATABASE_URL` to a free local port such as `5433`. Keep `POSTGRES_PASSWORD` and the password inside `DATABASE_URL` identical; recreate the Compose volume after changing bootstrap credentials (`docker compose down -v`).
+
 Payload enables Drizzle push mode automatically in Development. It keeps the local development database synchronized with the Payload config. Treat this database as a sandbox: do not run `pnpm db:migrate` against a Development database that push mode has already synchronized.
 
 To reset only the local development database, stop the service and remove the named volume:

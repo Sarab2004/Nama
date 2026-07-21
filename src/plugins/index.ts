@@ -5,20 +5,34 @@ import { seoPlugin } from '@payloadcms/plugin-seo'
 import { searchPlugin } from '@payloadcms/plugin-search'
 import { Plugin } from 'payload'
 import { revalidateRedirects } from '@/hooks/revalidateRedirects'
-import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
+import { GenerateDescription, GenerateImage, GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 
-import { Page, Post } from '@/payload-types'
+import { Page, Post, Service } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
-const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
+type SEOContentDocument = Post | Page | Service
+
+const generateTitle: GenerateTitle<SEOContentDocument> = ({ doc }) => {
   return doc?.title ? `${doc.title} | قالب وب‌سایت صنعتی` : 'قالب وب‌سایت صنعتی'
 }
 
-const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
+const generateDescription: GenerateDescription<SEOContentDocument> = ({ doc }) => {
+  return 'shortDescription' in doc ? doc.shortDescription || '' : ''
+}
+
+const generateImage: GenerateImage<SEOContentDocument> = ({ doc }) => {
+  return 'featuredImage' in doc ? doc.featuredImage || '' : ''
+}
+
+const generateURL: GenerateURL<SEOContentDocument> = ({ doc, collectionSlug }) => {
   const url = getServerSideURL()
+
+  if (collectionSlug === 'services') {
+    return doc?.slug ? `${url}/services/${doc.slug}` : `${url}/services`
+  }
 
   return doc?.slug ? `${url}/${doc.slug}` : url
 }
@@ -64,7 +78,7 @@ const localizeField = (field: any): any => {
 
 export const plugins: Plugin[] = [
   redirectsPlugin({
-    collections: ['pages', 'posts'],
+    collections: ['pages', 'posts', 'services'],
     overrides: {
       labels: {
         singular: { en: 'Redirect', fa: 'ریدایرکت' },
@@ -113,6 +127,8 @@ export const plugins: Plugin[] = [
     generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
   }),
   seoPlugin({
+    generateDescription,
+    generateImage,
     generateTitle,
     generateURL,
   }),
@@ -228,7 +244,7 @@ export const plugins: Plugin[] = [
     },
   }),
   searchPlugin({
-    collections: ['posts'],
+    collections: ['posts', 'services'],
     beforeSync: beforeSyncWithSearch,
     searchOverrides: {
       labels: {
