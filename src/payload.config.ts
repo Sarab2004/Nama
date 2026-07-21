@@ -5,6 +5,7 @@ import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
+import { Clients } from './collections/Clients'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
@@ -73,7 +74,7 @@ export default buildConfig({
       connectionString: databaseURL,
     },
   }),
-  collections: [Pages, Posts, Services, Media, Categories, Users],
+  collections: [Pages, Posts, Services, Clients, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
   localization: {
     defaultLocale,

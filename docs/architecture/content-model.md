@@ -76,6 +76,58 @@ Do not store `relatedProjects` on Services. When Projects exists:
 
 Projects collection, real Nama seed content, Header/Footer wiring to Company Information, and a dedicated Consultation Requests form remain deferred.
 
+## Clients
+
+`clients` is the single source of truth for employers/customers that Projects will reference later.
+
+### Responsibility
+
+Editors create and publish client profiles (name, logo, industry, copy, website, featured flag). Public listing/detail routes are deferred. Projects must relate to Clients via `relationship` → `clients` and must **not** duplicate employer names as free text, unless a future historical snapshot decision is documented separately.
+
+### Fields
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `name` | text (localized) | Required; admin title and slug/SEO base |
+| `slug` | `slugField({ useAsSlug: 'name' })` | Unique, indexed, auto-generated from name; manually editable |
+| `logo` | upload → `media` | Optional; images only |
+| `industry` | text (localized) | Optional free text (no fixed enum) |
+| `shortDescription` | textarea (localized) | Optional; max 320 for future cards |
+| `description` | richText via `defaultLexical` (localized) | Optional full profile |
+| `website` | text | Optional absolute `http(s)` URL |
+| `featured` | checkbox | Default `false`; future homepage / featured list |
+| `displayOrder` | number (`min: 0`) | Optional manual sort; not native collection `orderable` |
+| `publishedAt` | date | Sidebar; shared `populatePublishedAt` |
+| `meta.*` | SEO plugin fields | Title/description/image + generate fallbacks |
+
+### Localization
+
+Localized: `name`, `industry`, `shortDescription`, `description`, `meta.title`, `meta.description`.  
+Not localized: `slug`, `logo`, `website`, `featured`, `displayOrder`, `meta.image`.
+
+### Drafts and publication
+
+Same draft/version pattern as Services/Pages/Posts: autosave interval `100`, `schedulePublish`, `maxPerDoc: 50`. No public Preview URL yet (no frontend routes).
+
+### Access control
+
+Reuses `authenticated` and `authenticatedOrPublished`. Public readers see published documents only.
+
+### SEO and Search
+
+- SEO plugin generate fallbacks: title ← `name`, description ← `shortDescription`, image ← `logo`, URL ← `/clients/[slug]` (reserved for future public pages).
+- Search plugin does **not** index Clients yet — no public client pages exist. Add later when `/clients` ships.
+- Redirects plugin does not include Clients yet for the same reason.
+
+### Projects relationship (future)
+
+1. Persist `projects.client` as `relationship` → `clients` (source of truth for employer).
+2. Do not store a parallel free-text employer name on Projects unless an explicit historical snapshot requirement appears.
+
+### Out of scope here
+
+Public `/clients` routes, Projects collection, real Nama client seed content.
+
 ## Company Information
 
 `company-information` is a Payload **Global** (single document) and the single source of truth for official company identity and contact data. It is not a page and does not store About/Contact page SEO metadata.

@@ -10,13 +10,20 @@ import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 
-import { Page, Post, Service } from '@/payload-types'
+import { Page, Post, Service, Client } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
-type SEOContentDocument = Post | Page | Service
+type SEOContentDocument = Post | Page | Service | Client
+
+const getDocumentTitle = (doc: SEOContentDocument) => {
+  if ('title' in doc && typeof doc.title === 'string' && doc.title) return doc.title
+  if ('name' in doc && typeof doc.name === 'string' && doc.name) return doc.name
+  return ''
+}
 
 const generateTitle: GenerateTitle<SEOContentDocument> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | قالب وب‌سایت صنعتی` : 'قالب وب‌سایت صنعتی'
+  const title = getDocumentTitle(doc)
+  return title ? `${title} | قالب وب‌سایت صنعتی` : 'قالب وب‌سایت صنعتی'
 }
 
 const generateDescription: GenerateDescription<SEOContentDocument> = ({ doc }) => {
@@ -24,7 +31,9 @@ const generateDescription: GenerateDescription<SEOContentDocument> = ({ doc }) =
 }
 
 const generateImage: GenerateImage<SEOContentDocument> = ({ doc }) => {
-  return 'featuredImage' in doc ? doc.featuredImage || '' : ''
+  if ('featuredImage' in doc) return doc.featuredImage || ''
+  if ('logo' in doc) return doc.logo || ''
+  return ''
 }
 
 const generateURL: GenerateURL<SEOContentDocument> = ({ doc, collectionSlug }) => {
@@ -32,6 +41,10 @@ const generateURL: GenerateURL<SEOContentDocument> = ({ doc, collectionSlug }) =
 
   if (collectionSlug === 'services') {
     return doc?.slug ? `${url}/services/${doc.slug}` : `${url}/services`
+  }
+
+  if (collectionSlug === 'clients') {
+    return doc?.slug ? `${url}/clients/${doc.slug}` : `${url}/clients`
   }
 
   return doc?.slug ? `${url}/${doc.slug}` : url
