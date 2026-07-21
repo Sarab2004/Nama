@@ -1,6 +1,7 @@
 import * as migration_20260721_065055_postgres_baseline from './20260721_065055_postgres_baseline';
 import * as migration_20260721_081204_add_services_collection from './20260721_081204_add_services_collection';
 import * as migration_20260721_081404_add_services_redirect_relation from './20260721_081404_add_services_redirect_relation';
+import * as migration_20260721_095301_add_company_information_global from './20260721_095301_add_company_information_global';
 
 export const migrations = [
   {
@@ -16,6 +17,11 @@ export const migrations = [
   {
     up: migration_20260721_081404_add_services_redirect_relation.up,
     down: migration_20260721_081404_add_services_redirect_relation.down,
-    name: '20260721_081404_add_services_redirect_relation'
+    name: '20260721_081404_add_services_redirect_relation',
+  },
+  {
+    up: migration_20260721_095301_add_company_information_global.up,
+    down: migration_20260721_095301_add_company_information_global.down,
+    name: '20260721_095301_add_company_information_global'
   },
 ];

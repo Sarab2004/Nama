@@ -114,10 +114,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'company-information': CompanyInformation;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'company-information': CompanyInformationSelect<false> | CompanyInformationSelect<true>;
   };
   locale: 'fa' | 'en';
   widgets: {
@@ -1843,6 +1845,110 @@ export interface Footer {
   createdAt?: string | null;
 }
 /**
+ * منبع حقیقت واحد اطلاعات رسمی شرکت برای صفحات، فوتر، تماس و داده ساخت‌یافته آینده.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "company-information".
+ */
+export interface CompanyInformation {
+  id: number;
+  legalName: string;
+  /**
+   * برای نمایش کوتاه در هدر، فوتر و عنوان‌ها. اگر خالی باشد، فرانت‌اند می‌تواند از نام رسمی استفاده کند.
+   */
+  shortName?: string | null;
+  /**
+   * منبع حقیقت لوگوی رسمی شرکت برای Organization و صفحات آینده. Header/Footer فعلاً لوگو را از CMS ذخیره نمی‌کنند.
+   */
+  logo?: (number | null) | Media;
+  introduction?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  mission?: string | null;
+  vision?: string | null;
+  values?:
+    | {
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * فقط یک ردیف می‌تواند «شماره اصلی» باشد؛ در صورت انتخاب چندتایی، فقط اولین مورد حفظ می‌شود.
+   */
+  phones?:
+    | {
+        label?: string | null;
+        number: string;
+        type?: ('landline' | 'mobile' | 'fax') | null;
+        isPrimary?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * فقط یک ردیف می‌تواند «ایمیل اصلی» باشد؛ در صورت انتخاب چندتایی، فقط اولین مورد حفظ می‌شود.
+   */
+  emails?:
+    | {
+        label?: string | null;
+        address: string;
+        isPrimary?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  address?: {
+    fullAddress?: string | null;
+    city?: string | null;
+    province?: string | null;
+    postalCode?: string | null;
+  };
+  workingHours?:
+    | {
+        label: string;
+        /**
+         * قالب HH:mm، مثلاً 08:00
+         */
+        opensAt?: string | null;
+        /**
+         * قالب HH:mm، مثلاً 17:00
+         */
+        closesAt?: string | null;
+        isClosed?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  socialLinks?:
+    | {
+        platform: 'linkedin' | 'instagram' | 'telegram' | 'youtube' | 'aparat' | 'x' | 'whatsapp' | 'other';
+        label?: string | null;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  location?: {
+    latitude?: number | null;
+    longitude?: number | null;
+    /**
+     * لینک عمومی نقشه (مثلاً Google Maps). HTML یا iframe ذخیره نکنید.
+     */
+    mapUrl?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
@@ -1883,6 +1989,77 @@ export interface FooterSelect<T extends boolean = true> {
               label?: T;
             };
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "company-information_select".
+ */
+export interface CompanyInformationSelect<T extends boolean = true> {
+  legalName?: T;
+  shortName?: T;
+  logo?: T;
+  introduction?: T;
+  mission?: T;
+  vision?: T;
+  values?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  phones?:
+    | T
+    | {
+        label?: T;
+        number?: T;
+        type?: T;
+        isPrimary?: T;
+        id?: T;
+      };
+  emails?:
+    | T
+    | {
+        label?: T;
+        address?: T;
+        isPrimary?: T;
+        id?: T;
+      };
+  address?:
+    | T
+    | {
+        fullAddress?: T;
+        city?: T;
+        province?: T;
+        postalCode?: T;
+      };
+  workingHours?:
+    | T
+    | {
+        label?: T;
+        opensAt?: T;
+        closesAt?: T;
+        isClosed?: T;
+        id?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        label?: T;
+        url?: T;
+        id?: T;
+      };
+  location?:
+    | T
+    | {
+        latitude?: T;
+        longitude?: T;
+        mapUrl?: T;
       };
   updatedAt?: T;
   createdAt?: T;
