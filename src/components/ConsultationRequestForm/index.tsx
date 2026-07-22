@@ -108,7 +108,8 @@ export const ConsultationRequestForm: React.FC<ConsultationRequestFormProps> = (
 
   const queryService = searchParams.get('service')
   const queryProject = searchParams.get('project')
-  const resolvedServiceSlug = defaultServiceSlug || queryService
+  const resolvedServiceSlug = defaultServiceSlug ||
+    (services.some((service) => service.slug === queryService) ? queryService : null)
   const resolvedProjectSlug = relatedProjectSlug || queryProject
 
   const [values, setValues] = useState<FormState>(() =>
@@ -240,7 +241,7 @@ export const ConsultationRequestForm: React.FC<ConsultationRequestFormProps> = (
   return (
     <section
       aria-labelledby={`${formId}-heading`}
-      className={cn('w-full', className)}
+      className={cn('w-full scroll-mt-24', className)}
       id={CONSULTATION_ANCHOR}
     >
       <div className={cn(compact ? 'space-y-4' : 'space-y-6')}>

@@ -25,6 +25,7 @@
     "test": "pnpm run test:int && pnpm run test:e2e",
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
+    "seed:core-public-pages": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed-core-public-pages.ts",
     "translations:export": "node --no-deprecation --import=tsx/esm scripts/export-translation-source.ts",
     "translations:validate": "node --no-deprecation --import=tsx/esm scripts/validate-translations.ts",
     "translations:import": "node --no-deprecation --import=tsx/esm scripts/import-translations.ts"
