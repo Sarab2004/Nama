@@ -81,7 +81,14 @@ Real Nama seed content, Header/Footer wiring to Company Information, and a dedic
 
 ### Responsibility
 
-Editors create and publish client profiles (name, logo, industry, copy, website, featured flag). Public listing/detail routes are deferred. Projects relate to Clients via `relationship` → `clients` and must **not** duplicate employer names as free text, unless a future historical snapshot decision is documented separately.
+Editors create and publish client profiles (name, logo, industry, copy, website, featured flag). Public listing and detail routes render published clients. Projects relate to Clients via `relationship` → `clients` and must **not** duplicate employer names as free text.
+
+Public routes:
+
+| Path | Behavior |
+| --- | --- |
+| `/clients` | Published listing sorted by `displayOrder`, then `name` |
+| `/clients/[slug]` | Detail page; unpublished/missing → `notFound` via `PayloadRedirects` |
 
 ### Fields
 
@@ -91,10 +98,10 @@ Editors create and publish client profiles (name, logo, industry, copy, website,
 | `slug` | `slugField({ useAsSlug: 'name' })` | Unique, indexed, auto-generated from name; manually editable |
 | `logo` | upload → `media` | Optional; images only |
 | `industry` | text (localized) | Optional free text (no fixed enum) |
-| `shortDescription` | textarea (localized) | Optional; max 320 for future cards |
+| `shortDescription` | textarea (localized) | Optional; max 320 for cards and meta fallback |
 | `description` | richText via `defaultLexical` (localized) | Optional full profile |
 | `website` | text | Optional absolute `http(s)` URL |
-| `featured` | checkbox | Default `false`; future homepage / featured list |
+| `featured` | checkbox | Default `false`; reserved for future homepage / featured list (does not change listing sort yet) |
 | `displayOrder` | number (`min: 0`) | Optional manual sort; not native collection `orderable` |
 | `publishedAt` | date | Sidebar; shared `populatePublishedAt` |
 | `meta.*` | SEO plugin fields | Title/description/image + generate fallbacks |
@@ -105,19 +112,38 @@ Editors create and publish client profiles (name, logo, industry, copy, website,
 Localized: `name`, `industry`, `shortDescription`, `description`, `meta.title`, `meta.description`.  
 Not localized: `slug`, `logo`, `website`, `featured`, `displayOrder`, `meta.image`.
 
+Locale-aware paths: `/fa/clients`, `/en/clients`, `/fa/clients/[slug]`, `/en/clients/[slug]`.
+
 ### Drafts and publication
 
-Same draft/version pattern as Services/Pages/Posts: autosave interval `100`, `schedulePublish`, `maxPerDoc: 50`. No public Preview URL yet (no frontend routes).
+Same draft/version pattern as Services/Pages/Posts: autosave interval `100`, `schedulePublish`, `maxPerDoc: 50`. Preview uses shared `/next/preview` + Draft Mode (`admin.preview` / `livePreview`).
 
 ### Access control
 
 Reuses `authenticated` and `authenticatedOrPublished`. Public readers see published documents only.
 
-### SEO and Search
+### Related projects on Client detail
 
-- SEO plugin generate fallbacks: title ← `name`, description ← `shortDescription`, image ← `logo`, URL ← `/clients/[slug]` (reserved for future public pages).
-- Search plugin does **not** index Clients yet — no public client pages exist. Add later when `/clients` ships.
-- Redirects plugin does not include Clients yet for the same reason.
+Client detail loads published projects with a single query:
+
+- `client equals client.id`
+- `draft: false`
+- `overrideAccess: false`
+- `sort: displayOrder,title`
+
+Rendered with shared `ProjectCard`. Empty related-project sections are omitted.
+
+### SEO, Search, Redirects, Cache
+
+- SEO / `generateMeta` fallbacks: title ← `name`, description ← `shortDescription`, image ← `logo`, canonical ← `/clients/[slug]`.
+- Structured data: schema.org `Organization` (name, description, logo, website via `sameAs`, page URL). Empty fields omitted.
+- Search plugin indexes Clients (`name` mapped to search title; drafts excluded). Results link to `/clients/[slug]`.
+- Redirects plugin includes Clients; slug changes create redirects handled by `PayloadRedirects`.
+- Revalidation refreshes `/[locale]/clients`, `/[locale]/clients/[slug]`, previous slug, and related Project list/detail paths (client identity appears on Project pages).
+
+### Project page linking
+
+Project cards and Project detail link name/logo to `/clients/[slug]` only when the Client is published and has a slug (`resolveLinkableClient`). Draft/missing clients do not render as broken links.
 
 ### Projects relationship
 
@@ -127,7 +153,7 @@ Reuses `authenticated` and `authenticatedOrPublished`. Public readers see publis
 
 ### Out of scope here
 
-Public `/clients` routes, real Nama client seed content.
+Featured clients on the homepage, real Nama client seed content, Consultation Requests, Company Information footer wiring.
 
 ## Projects
 
@@ -200,7 +226,7 @@ Reuses `authenticated` and `authenticatedOrPublished`. Public readers see publis
 
 ### Frontend rendering notes
 
-- Client identity is rendered from the populated relationship; no link to `/clients/[slug]` yet (route deferred).
+- Client identity is rendered from the populated relationship; Project cards/detail link to `/clients/[slug]` only for published clients with a slug.
 - Related services link only when published and have a slug.
 - Gallery uses stored array order and shared `Media`.
 - Testimonials render only when `permissionToPublish === true`.
@@ -213,7 +239,7 @@ Testimonials may store quote, author name/role, and an optional image/PDF. Do no
 
 ### Out of scope here
 
-Public `/clients` routes, listing projects on Client pages, Consultation Requests, real project/testimonial seed data.
+Featured clients on the homepage, Consultation Requests, real project/testimonial seed data.
 
 ## Company Information
 

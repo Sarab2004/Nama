@@ -11,7 +11,7 @@ import { useLocale } from '@/providers/Locale'
 
 export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'> & {
   doc?: {
-    relationTo?: 'posts' | 'services' | 'projects'
+    relationTo?: 'posts' | 'services' | 'projects' | 'clients'
   } | null
 }
 
@@ -19,7 +19,7 @@ export const Card: React.FC<{
   alignItems?: 'center'
   className?: string
   doc?: CardPostData
-  relationTo?: 'posts' | 'services' | 'projects'
+  relationTo?: 'posts' | 'services' | 'projects' | 'clients'
   showCategories?: boolean
   title?: string
 }> = (props) => {

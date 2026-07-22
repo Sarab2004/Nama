@@ -8,10 +8,26 @@ export const dictionaries = {
     "pages": "Pages",
     "post": "Post",
     "posts": "Posts",
+    "client": "Client",
+    "clients": "Clients",
     "project": "Project",
     "projects": "Projects",
     "service": "Service",
     "services": "Services"
+  },
+  "clients": {
+    "about": "About the client",
+    "ctaDescription": "Share your project needs and our team will follow up through the contact form.",
+    "ctaLabel": "Request consultation",
+    "ctaTitle": "Need a consultation?",
+    "empty": "No published clients are available yet.",
+    "home": "Home",
+    "intro": "Meet the employers and organizations we collaborate with on industrial projects.",
+    "metaDescription": "Browse published clients, industries, and related project work.",
+    "relatedProjects": "Related projects",
+    "title": "Clients",
+    "viewDetails": "View client",
+    "visitWebsite": "Visit website"
   },
   "common": {
     "copied": "Copied!",
@@ -114,10 +130,26 @@ export const dictionaries = {
     "pages": "صفحه‌ها",
     "post": "نوشته",
     "posts": "نوشته‌ها",
+    "client": "کارفرما",
+    "clients": "کارفرماها",
     "project": "پروژه",
     "projects": "پروژه‌ها",
     "service": "خدمت",
     "services": "خدمات"
+  },
+  "clients": {
+    "about": "درباره کارفرما",
+    "ctaDescription": "نیاز پروژه خود را از طریق صفحه تماس ارسال کنید تا تیم ما پیگیری کند.",
+    "ctaLabel": "درخواست مشاوره",
+    "ctaTitle": "به مشاوره نیاز دارید؟",
+    "empty": "در حال حاضر کارفرمای منتشرشده‌ای برای نمایش وجود ندارد.",
+    "home": "خانه",
+    "intro": "کارفرماها و سازمان‌هایی را ببینید که در پروژه‌های صنعتی با آن‌ها همکاری داشته‌ایم.",
+    "metaDescription": "فهرست کارفرماهای منتشرشده، حوزه فعالیت و پروژه‌های مرتبط.",
+    "relatedProjects": "پروژه‌های مرتبط",
+    "title": "کارفرماها",
+    "viewDetails": "مشاهده کارفرما",
+    "visitWebsite": "مشاهده وب‌سایت"
   },
   "common": {
     "copied": "کپی شد!",

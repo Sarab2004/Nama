@@ -1112,6 +1112,10 @@ export interface Redirect {
       | ({
           relationTo: 'projects';
           value: number | Project;
+        } | null)
+      | ({
+          relationTo: 'clients';
+          value: number | Client;
         } | null);
     url?: string | null;
   };
@@ -1157,6 +1161,10 @@ export interface Search {
     | {
         relationTo: 'projects';
         value: number | Project;
+      }
+    | {
+        relationTo: 'clients';
+        value: number | Client;
       };
   slug?: string | null;
   meta?: {

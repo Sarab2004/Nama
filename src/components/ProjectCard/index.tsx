@@ -4,10 +4,11 @@ import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
 import React from 'react'
 
-import type { Client, Media, Project, Service } from '@/payload-types'
+import type { Media, Project, Service } from '@/payload-types'
 
 import { Media as MediaComponent } from '@/components/Media'
 import { useLocale } from '@/providers/Locale'
+import { resolveLinkableClient } from '@/utilities/resolveLinkableClient'
 
 export type ProjectCardData = Pick<
   Project,
@@ -21,11 +22,6 @@ export type ProjectCardData = Pick<
   | 'client'
   | 'services'
 >
-
-const resolveClient = (client: ProjectCardData['client']): Client | null => {
-  if (client && typeof client === 'object') return client
-  return null
-}
 
 const resolvePublishedServices = (services: ProjectCardData['services']): Service[] => {
   if (!Array.isArray(services)) return []
@@ -46,12 +42,13 @@ export const ProjectCard: React.FC<{
   const { slug, title, shortDescription, featuredImage, executionYear, location, client, services } =
     doc
   const href = `/${locale}/projects/${slug}`
-  const resolvedClient = resolveClient(client)
+  const linkableClient = resolveLinkableClient(client)
   const publishedServices = resolvePublishedServices(services)
   const clientLogo =
-    resolvedClient?.logo && typeof resolvedClient.logo === 'object'
-      ? (resolvedClient.logo as Media)
+    linkableClient?.logo && typeof linkableClient.logo === 'object'
+      ? (linkableClient.logo as Media)
       : null
+  const clientHref = linkableClient ? `/${locale}/clients/${linkableClient.slug}` : null
 
   return (
     <article
@@ -80,16 +77,37 @@ export const ProjectCard: React.FC<{
           </h2>
         )}
 
-        {(resolvedClient || executionYear || location) && (
+        {(linkableClient || executionYear || location) && (
           <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-            {resolvedClient && (
+            {linkableClient && (
               <span className="inline-flex items-center gap-2 min-w-0">
                 {clientLogo ? (
-                  <span className="relative h-6 w-6 shrink-0 overflow-hidden rounded-sm bg-muted">
-                    <MediaComponent fill imgClassName="object-contain" resource={clientLogo} size="48px" />
-                  </span>
+                  clientHref ? (
+                    <Link
+                      aria-label={linkableClient.name}
+                      className="relative h-6 w-6 shrink-0 overflow-hidden rounded-sm bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      href={clientHref}
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      <MediaComponent fill imgClassName="object-contain" resource={clientLogo} size="48px" />
+                    </Link>
+                  ) : (
+                    <span className="relative h-6 w-6 shrink-0 overflow-hidden rounded-sm bg-muted">
+                      <MediaComponent fill imgClassName="object-contain" resource={clientLogo} size="48px" />
+                    </span>
+                  )
                 ) : null}
-                <span className="truncate">{resolvedClient.name}</span>
+                {clientHref ? (
+                  <Link
+                    className="truncate hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    href={clientHref}
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    {linkableClient.name}
+                  </Link>
+                ) : (
+                  <span className="truncate">{linkableClient.name}</span>
+                )}
               </span>
             )}
             {executionYear && <span>{executionYear}</span>}

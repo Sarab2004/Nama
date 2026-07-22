@@ -395,7 +395,8 @@ describe('Projects frontend', () => {
     })
 
     expect(publishedSearch.docs.length).toBeGreaterThan(0)
-    expect(publishedSearch.docs[0]?.title).toContain('Published Frontend Project')
+    expect(publishedSearch.docs[0]?.slug).toBe(publishedProject.slug)
+    expect(publishedSearch.docs[0]?.title).toBe('SEO Published Project')
 
     const draftSearch = await payload.find({
       collection: 'search',

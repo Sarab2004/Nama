@@ -95,7 +95,7 @@ const localizeField = (field: any): any => {
 
 export const plugins: Plugin[] = [
   redirectsPlugin({
-    collections: ['pages', 'posts', 'services', 'projects'],
+    collections: ['pages', 'posts', 'services', 'projects', 'clients'],
     overrides: {
       labels: {
         singular: { en: 'Redirect', fa: 'ریدایرکت' },
@@ -261,7 +261,7 @@ export const plugins: Plugin[] = [
     },
   }),
   searchPlugin({
-    collections: ['posts', 'services', 'projects'],
+    collections: ['posts', 'services', 'projects', 'clients'],
     beforeSync: beforeSyncWithSearch,
     searchOverrides: {
       labels: {

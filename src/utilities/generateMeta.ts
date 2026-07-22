@@ -1,11 +1,17 @@
 import type { Metadata } from 'next'
 
-import type { Media, Page, Post, Project, Service, Config } from '../payload-types'
+import type { Client, Media, Page, Post, Project, Service, Config } from '../payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
 
-type MetaDoc = Partial<Page> | Partial<Post> | Partial<Service> | Partial<Project> | null
+type MetaDoc =
+  | Partial<Page>
+  | Partial<Post>
+  | Partial<Service>
+  | Partial<Project>
+  | Partial<Client>
+  | null
 
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL()
@@ -21,12 +27,32 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   return url
 }
 
-const getFeaturedImage = (doc: MetaDoc) => {
-  if (doc && 'featuredImage' in doc) {
+const getFallbackImage = (doc: MetaDoc) => {
+  if (!doc) return null
+
+  if ('featuredImage' in doc && doc.featuredImage) {
     return doc.featuredImage
   }
 
+  if ('logo' in doc && doc.logo) {
+    return doc.logo
+  }
+
   return null
+}
+
+const getFallbackTitle = (doc: MetaDoc): string | undefined => {
+  if (!doc) return undefined
+
+  if ('title' in doc && typeof doc.title === 'string' && doc.title) {
+    return doc.title
+  }
+
+  if ('name' in doc && typeof doc.name === 'string' && doc.name) {
+    return doc.name
+  }
+
+  return undefined
 }
 
 const getShortDescription = (doc: MetaDoc) => {
@@ -47,12 +73,13 @@ export const generateMeta = async (args: {
 }): Promise<Metadata> => {
   const { doc, pathname } = args
 
-  const ogImage = getImageURL(doc?.meta?.image || getFeaturedImage(doc))
+  const ogImage = getImageURL(doc?.meta?.image || getFallbackImage(doc))
+  const fallbackTitle = getFallbackTitle(doc)
 
   const title = doc?.meta?.title
     ? `${doc.meta.title} | قالب وب‌سایت صنعتی`
-    : doc?.title
-      ? `${doc.title} | قالب وب‌سایت صنعتی`
+    : fallbackTitle
+      ? `${fallbackTitle} | قالب وب‌سایت صنعتی`
       : 'قالب وب‌سایت صنعتی'
 
   const description = doc?.meta?.description || getShortDescription(doc)

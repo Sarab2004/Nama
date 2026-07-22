@@ -5,6 +5,8 @@ import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { defaultLexical } from '../../fields/defaultLexical'
 import { validateDisplayOrder } from '../../fields/validateDisplayOrder'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
+import { generatePreviewPath } from '../../utilities/generatePreviewPath'
+import { revalidateClient, revalidateClientDelete } from './hooks/revalidateClient'
 
 import {
   MetaDescriptionField,
@@ -57,6 +59,7 @@ export const Clients: CollectionConfig<'clients'> = {
     shortDescription: true,
     featured: true,
     displayOrder: true,
+    _status: true,
     meta: {
       image: true,
       description: true,
@@ -68,6 +71,20 @@ export const Clients: CollectionConfig<'clients'> = {
       en: 'Content',
       fa: 'محتوا',
     },
+    livePreview: {
+      url: ({ data, req }) =>
+        generatePreviewPath({
+          slug: data?.slug,
+          collection: 'clients',
+          req,
+        }),
+    },
+    preview: (data, { req }) =>
+      generatePreviewPath({
+        slug: data?.slug as string,
+        collection: 'clients',
+        req,
+      }),
     useAsTitle: 'name',
   },
   defaultSort: 'displayOrder',
@@ -254,6 +271,8 @@ export const Clients: CollectionConfig<'clients'> = {
     },
   ],
   hooks: {
+    afterChange: [revalidateClient],
+    afterDelete: [revalidateClientDelete],
     beforeChange: [populatePublishedAt],
   },
   versions: {

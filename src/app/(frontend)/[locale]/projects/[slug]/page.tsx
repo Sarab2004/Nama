@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
 
 import { PayloadRedirects } from '@/components/PayloadRedirects'
+import { resolveLinkableClient } from '@/utilities/resolveLinkableClient'
 import { ServiceBreadcrumbs } from '@/components/ServiceBreadcrumbs'
 import { ServiceConsultationCTA } from '@/components/ServiceConsultationCTA'
 import { Media } from '@/components/Media'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import RichText from '@/components/RichText'
 import configPromise from '@payload-config'
-import type { Client, Media as MediaType, Project, Service } from '@/payload-types'
+import type { Media as MediaType, Project, Service } from '@/payload-types'
 import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
 import Link from 'next/link'
@@ -43,11 +44,6 @@ type Args = {
   }>
 }
 
-const resolveClient = (client: Project['client']): Client | null => {
-  if (client && typeof client === 'object') return client
-  return null
-}
-
 const resolvePublishedServices = (services: Project['services']): Service[] => {
   if (!Array.isArray(services)) return []
   return services.filter((service): service is Service => {
@@ -70,7 +66,7 @@ export default async function ProjectPage({ params: paramsPromise }: Args) {
 
   if (!project) return <PayloadRedirects locale={locale} url={url} />
 
-  const client = resolveClient(project.client)
+  const client = resolveLinkableClient(project.client)
   const publishedServices = resolvePublishedServices(project.services)
   const gallery = (project.gallery || []).filter(
     (row) => row?.image && typeof row.image === 'object',
@@ -84,6 +80,7 @@ export default async function ProjectPage({ params: paramsPromise }: Args) {
   const structuredData = buildProjectStructuredDataScripts(project, url)
   const clientLogo =
     client?.logo && typeof client.logo === 'object' ? (client.logo as MediaType) : null
+  const clientHref = client?.slug ? localizePath(`/clients/${client.slug}`, locale) : null
 
   return (
     <article className="pt-24 pb-24">
@@ -135,12 +132,32 @@ export default async function ProjectPage({ params: paramsPromise }: Args) {
                   <dt className="text-sm text-muted-foreground mb-3">{dictionary.projects.client}</dt>
                   <dd className="m-0 flex items-start gap-3">
                     {clientLogo ? (
-                      <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-sm bg-muted">
-                        <Media fill imgClassName="object-contain" resource={clientLogo} size="96px" />
-                      </span>
+                      clientHref ? (
+                        <Link
+                          className="relative h-12 w-12 shrink-0 overflow-hidden rounded-sm bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          href={clientHref}
+                        >
+                          <Media fill imgClassName="object-contain" resource={clientLogo} size="96px" />
+                        </Link>
+                      ) : (
+                        <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-sm bg-muted">
+                          <Media fill imgClassName="object-contain" resource={clientLogo} size="96px" />
+                        </span>
+                      )
                     ) : null}
                     <div className="min-w-0">
-                      <p className="font-medium">{client.name}</p>
+                      {clientHref ? (
+                        <p className="font-medium">
+                          <Link
+                            className="hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            href={clientHref}
+                          >
+                            {client.name}
+                          </Link>
+                        </p>
+                      ) : (
+                        <p className="font-medium">{client.name}</p>
+                      )}
                       {client.industry && (
                         <p className="text-sm text-muted-foreground mt-1">{client.industry}</p>
                       )}
