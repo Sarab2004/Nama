@@ -36,6 +36,26 @@ export const dictionaries = {
     "noImage": "No image",
     "submit": "submit"
   },
+  "company": {
+    "aboutHeading": "About us",
+    "address": "Address",
+    "callCta": "Call us",
+    "closed": "Closed",
+    "contactHeading": "Contact",
+    "coordinates": "Coordinates",
+    "emailCta": "Send email",
+    "mission": "Mission",
+    "social": "Social networks",
+    "values": "Our values",
+    "viewOnMap": "View on map",
+    "vision": "Vision",
+    "workingHours": "Working hours"
+  },
+  "footer": {
+    "contact": "Contact",
+    "navigation": "Navigation",
+    "social": "Social networks"
+  },
   "errors": {
     "internalServerError": "Internal Server Error",
     "somethingWentWrong": "Something went wrong."
@@ -48,7 +68,7 @@ export const dictionaries = {
     "placeholder": "Language"
   },
   "logo": {
-    "alt": "Payload Logo"
+    "alt": "Company logo"
   },
   "pagination": {
     "next": "Next",
@@ -158,6 +178,26 @@ export const dictionaries = {
     "noImage": "بدون تصویر",
     "submit": "ارسال"
   },
+  "company": {
+    "aboutHeading": "درباره ما",
+    "address": "نشانی",
+    "callCta": "تماس بگیرید",
+    "closed": "تعطیل",
+    "contactHeading": "تماس با ما",
+    "coordinates": "مختصات",
+    "emailCta": "ارسال ایمیل",
+    "mission": "مأموریت",
+    "social": "شبکه‌های اجتماعی",
+    "values": "ارزش‌های ما",
+    "viewOnMap": "مشاهده روی نقشه",
+    "vision": "چشم‌انداز",
+    "workingHours": "ساعات کاری"
+  },
+  "footer": {
+    "contact": "تماس",
+    "navigation": "پیوندها",
+    "social": "شبکه‌های اجتماعی"
+  },
   "errors": {
     "internalServerError": "خطای داخلی سرور",
     "somethingWentWrong": "مشکلی پیش آمد."
@@ -170,7 +210,7 @@ export const dictionaries = {
     "placeholder": "زبان"
   },
   "logo": {
-    "alt": "لوگوی Payload"
+    "alt": "لوگوی شرکت"
   },
   "pagination": {
     "next": "بعدی",

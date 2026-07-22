@@ -215,7 +215,15 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | CompanyAboutBlock
+    | CompanyContactBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -794,6 +802,40 @@ export interface Form {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CompanyAboutBlock".
+ */
+export interface CompanyAboutBlock {
+  /**
+   * Optional. Leave empty to use the default About heading from the site dictionary.
+   */
+  heading?: string | null;
+  showLogo?: boolean | null;
+  showIntroduction?: boolean | null;
+  showMission?: boolean | null;
+  showVision?: boolean | null;
+  showValues?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'companyAbout';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CompanyContactBlock".
+ */
+export interface CompanyContactBlock {
+  heading?: string | null;
+  showPhones?: boolean | null;
+  showEmails?: boolean | null;
+  showAddress?: boolean | null;
+  showWorkingHours?: boolean | null;
+  showSocial?: boolean | null;
+  showMapLink?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'companyContact';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1429,6 +1471,8 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        companyAbout?: T | CompanyAboutBlockSelect<T>;
+        companyContact?: T | CompanyContactBlockSelect<T>;
       };
   meta?:
     | T
@@ -1525,6 +1569,35 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CompanyAboutBlock_select".
+ */
+export interface CompanyAboutBlockSelect<T extends boolean = true> {
+  heading?: T;
+  showLogo?: T;
+  showIntroduction?: T;
+  showMission?: T;
+  showVision?: T;
+  showValues?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CompanyContactBlock_select".
+ */
+export interface CompanyContactBlockSelect<T extends boolean = true> {
+  heading?: T;
+  showPhones?: T;
+  showEmails?: T;
+  showAddress?: T;
+  showWorkingHours?: T;
+  showSocial?: T;
+  showMapLink?: T;
   id?: T;
   blockName?: T;
 }
@@ -2170,7 +2243,7 @@ export interface CompanyInformation {
    */
   shortName?: string | null;
   /**
-   * منبع حقیقت لوگوی رسمی شرکت برای Organization و صفحات آینده. Header/Footer فعلاً لوگو را از CMS ذخیره نمی‌کنند.
+   * منبع حقیقت لوگوی رسمی شرکت برای Header، Footer، About و Organization JSON-LD. لوگو را در Header/Footer جدا ذخیره نکنید.
    */
   logo?: (number | null) | Media;
   introduction?: {

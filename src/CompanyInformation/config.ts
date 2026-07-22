@@ -9,6 +9,7 @@ import type {
 import { anyone } from '@/access/anyone'
 import { authenticated } from '@/access/authenticated'
 import { defaultLexical } from '@/fields/defaultLexical'
+import { revalidateCompanyInformation } from './hooks/revalidateCompanyInformation'
 
 const TIME_HH_MM = /^([01]\d|2[0-3]):([0-5]\d)$/
 
@@ -103,7 +104,7 @@ const identityFields: Field[] = [
     },
     admin: {
       description:
-        'منبع حقیقت لوگوی رسمی شرکت برای Organization و صفحات آینده. Header/Footer فعلاً لوگو را از CMS ذخیره نمی‌کنند.',
+        'منبع حقیقت لوگوی رسمی شرکت برای Header، Footer، About و Organization JSON-LD. لوگو را در Header/Footer جدا ذخیره نکنید.',
     },
   },
   {
@@ -590,6 +591,7 @@ export const CompanyInformation: GlobalConfig = {
   ],
   hooks: {
     beforeChange: [ensureSinglePrimaryContact],
+    afterChange: [revalidateCompanyInformation],
   },
   versions: {
     max: 50,

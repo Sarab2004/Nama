@@ -1,30 +1,44 @@
-import clsx from 'clsx'
 import React from 'react'
+import { cn } from '@/utilities/ui'
 
+import type { Media as MediaType } from '@/payload-types'
+
+import { CompanyLogo } from '@/components/CompanyLogo'
+
+/**
+ * @deprecated Prefer CompanyLogo with Company Information data.
+ * Kept as a thin adapter so existing imports keep working during the migration.
+ */
 interface Props {
   alt?: string
+  brandName?: string
   className?: string
   loading?: 'lazy' | 'eager'
-  priority?: 'auto' | 'high' | 'low'
+  logo?: number | MediaType | null
+  priority?: 'auto' | 'high' | 'low' | boolean
 }
 
 export const Logo = (props: Props) => {
-  const { alt = 'لوگوی Payload', loading: loadingFromProps, priority: priorityFromProps, className } = props
+  const {
+    alt = '',
+    brandName = '',
+    className,
+    loading = 'lazy',
+    logo = null,
+    priority,
+  } = props
 
-  const loading = loadingFromProps || 'lazy'
-  const priority = priorityFromProps || 'low'
+  const resolvedPriority = priority === true || priority === 'high'
 
   return (
-    /* eslint-disable @next/next/no-img-element */
-    <img
-      alt={alt}
-      width={193}
-      height={34}
+    <CompanyLogo
+      alt={alt || brandName}
+      brandName={brandName || alt}
+      className={cn(className)}
       loading={loading}
-      fetchPriority={priority}
-      decoding="async"
-      className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
-      src="https://raw.githubusercontent.com/payloadcms/payload/3.x/packages/ui/src/assets/payload-logo-light.svg"
+      logo={logo}
+      priority={resolvedPriority}
+      size="header"
     />
   )
 }

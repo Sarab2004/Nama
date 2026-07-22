@@ -4,19 +4,23 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
-import type { Header } from '@/payload-types'
+import type { Header, Media } from '@/payload-types'
 
-import { Logo } from '@/components/Logo/Logo'
+import { CompanyLogo } from '@/components/CompanyLogo'
 import { HeaderNav } from './Nav'
 
 import { useLocale } from '@/providers/Locale'
 
 interface HeaderClientProps {
+  company: {
+    brandName: string
+    logo: Media | null
+  }
   data: Header
 }
 
-export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
-  const { dictionary, locale } = useLocale()
+export const HeaderClient: React.FC<HeaderClientProps> = ({ company, data }) => {
+  const { locale } = useLocale()
   const [theme, setTheme] = useState<string | null>(null)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
@@ -46,11 +50,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
           href={`/${locale}`}
         >
-          <Logo
-            alt={dictionary.logo.alt}
+          <CompanyLogo
+            alt={company.brandName}
+            brandName={company.brandName}
             loading="eager"
-            priority="high"
-            className="invert dark:invert-0"
+            logo={company.logo}
+            priority
+            size="header"
           />
         </Link>
         <HeaderNav data={data} />

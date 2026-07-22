@@ -247,7 +247,22 @@ Featured clients on the homepage, Consultation Requests, real project/testimonia
 
 ### Why a Global
 
-Company facts are singleton organizational data. Putting them in a Collection would invite duplicate records and unclear ownership. Header and Footer currently only store navigation links; they must not become parallel contact stores.
+Company facts are singleton organizational data. Putting them in a Collection would invite duplicate records and unclear ownership. Header and Footer only store navigation links; they must not become parallel contact stores.
+
+### Public surfaces
+
+| Surface | Behavior |
+| --- | --- |
+| Header | Official logo (or brand-name text fallback) + home link; nav remains Header Global |
+| Footer | Brand identity, primary phone/email, address, social links, Footer nav, language/theme, copyright year + brand |
+| Locale layout | Site-wide `Organization` JSON-LD once per locale |
+| Page Builder | `companyAbout` and `companyContact` blocks read the Global (no duplicated company copy on the Page) |
+
+Page SEO (`meta.*`) stays on the **Pages** collection. About/Contact pages compose these blocks (and Form Block) without hardcoded `/about` or `/contact` routes.
+
+### Data access
+
+Frontend uses `getCompanyInformation(locale)` → `getCachedGlobal('company-information', 1, locale)` with request dedupe (`React.cache`) and tags `global_company-information_[locale]`. Helpers in `companyContact.ts` resolve primary phone/email, `tel:` / `mailto:`, social URL validation, address/hours formatting, and brand display name (`shortName` → `legalName`).
 
 ### Data groups
 
@@ -262,7 +277,7 @@ Array order is presentation order. No display-order integers are stored. Phone/e
 
 ### Logo source of truth
 
-Header/Footer do not persist a company logo in CMS (the frontend Logo component still uses the template Payload SVG). Company Information therefore owns an optional `logo` upload for future Organization JSON-LD and branded surfaces. Do not duplicate logo storage into Header/Footer later without removing it here.
+Company Information owns the official logo upload. Header/Footer do **not** store a parallel logo. Public `CompanyLogo` renders Media when present; otherwise it falls back to brand text (never the remote Payload SVG).
 
 ### Localization
 
@@ -272,19 +287,26 @@ Persian-only content is valid; English is not required.
 
 ### Access, versions, drafts
 
-- Public `read` via `anyone` (frontend will need this).
+- Public `read` via `anyone`.
 - `update` and `readVersions` via `authenticated`.
 - Version history enabled (`versions.max: 50`) so contact edits are recoverable.
-- **Drafts are not enabled** for this Global: Header/Footer have no drafts, and draft contact details would complicate public reads without a clear publish UX. Live updates are intentional for this singleton.
+- **Drafts are not enabled** for this Global: live updates are intentional for this singleton.
 
 ### SEO and structured data
 
-No `meta.*` / SEO plugin fields on this Global. Future Organization JSON-LD (and related markup) should be generated in the frontend from these fields; do not store raw Schema.org JSON in the database.
+No `meta.*` / SEO plugin fields on this Global. `generateCompanyOrganizationJsonLd` builds schema.org `Organization` in the locale layout from live fields; empty values are omitted. Do not store raw Schema.org JSON in the database. Client page Organization schemas remain separate employer markup.
 
-### Revalidation (future)
+### Revalidation
 
-No `afterChange` revalidation hooks yet, because About, Contact, Header, and Footer are not wired to this Global in this task. When those surfaces consume it, reuse the existing `getCachedGlobal` / `global_${slug}_${locale}` tag pattern (see Header/Footer hooks).
+`afterChange` on Company Information revalidates `global_company-information_[locale]` and `revalidatePath('/[locale]', 'layout')` for each locale so Header, Footer, JSON-LD, and About/Contact blocks refresh together. Header/Footer nav globals use matching locale tags: `global_header_[locale]`, `global_footer_[locale]`.
+
+### Page Builder blocks
+
+| Block slug | Purpose |
+| --- | --- |
+| `companyAbout` | Introduction, mission, vision, values, optional logo; show/hide toggles only |
+| `companyContact` | Phones, emails, address, hours, social, map link, contact CTAs; Form Block stays separate |
 
 ### Out of scope here
 
-About/Contact pages, Header/Footer wiring, maps providers, consultation forms, real Nama seed content, and JSON-LD rendering.
+Real Nama seed content, Consultation Requests, map embeds/API keys, UI Foundation redesign, moving navigation into Company Information, SEO fields on the Global.

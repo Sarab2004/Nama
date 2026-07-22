@@ -5,6 +5,8 @@ import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
 import { defaultLocale, getDirection, isLocale, type Locale } from '@/i18n/config'
 import { Providers } from '@/providers'
+import { buildCompanyStructuredDataScripts } from '@/utilities/generateCompanyStructuredData'
+import { getCompanyInformation } from '@/utilities/getCompanyInformation'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
@@ -21,10 +23,19 @@ export default async function LocaleLayout({ children, params }: Args) {
 
   const locale: Locale = localeParam || defaultLocale
   const { isEnabled } = await draftMode()
+  const company = await getCompanyInformation(locale)
+  const structuredData = buildCompanyStructuredDataScripts(company)
 
   return (
     <Providers locale={locale}>
       <div dir={getDirection(locale)} lang={locale}>
+        {structuredData.map((data, index) => (
+          <script
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+            key={`company-org-jsonld-${index}`}
+            type="application/ld+json"
+          />
+        ))}
         <AdminBar
           adminBarProps={{
             preview: isEnabled,
