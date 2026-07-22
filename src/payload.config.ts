@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
 import { Clients } from './collections/Clients'
+import { ConsultationRequests } from './collections/ConsultationRequests'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
@@ -75,7 +76,17 @@ export default buildConfig({
       connectionString: databaseURL,
     },
   }),
-  collections: [Pages, Posts, Services, Clients, Projects, Media, Categories, Users],
+  collections: [
+    Pages,
+    Posts,
+    Services,
+    Clients,
+    Projects,
+    ConsultationRequests,
+    Media,
+    Categories,
+    Users,
+  ],
   cors: [getServerSideURL()].filter(Boolean),
   localization: {
     defaultLocale,

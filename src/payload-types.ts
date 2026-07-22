@@ -72,6 +72,7 @@ export interface Config {
     services: Service;
     clients: Client;
     projects: Project;
+    'consultation-requests': ConsultationRequest;
     media: Media;
     categories: Category;
     users: User;
@@ -103,6 +104,7 @@ export interface Config {
     services: ServicesSelect<false> | ServicesSelect<true>;
     clients: ClientsSelect<false> | ClientsSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    'consultation-requests': ConsultationRequestsSelect<false> | ConsultationRequestsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -223,6 +225,7 @@ export interface Page {
     | FormBlock
     | CompanyAboutBlock
     | CompanyContactBlock
+    | ConsultationRequestBlock
   )[];
   meta?: {
     title?: string | null;
@@ -839,6 +842,24 @@ export interface CompanyContactBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ConsultationRequestBlock".
+ */
+export interface ConsultationRequestBlock {
+  title?: string | null;
+  description?: string | null;
+  showCompanyField?: boolean | null;
+  showJobTitleField?: boolean | null;
+  allowServiceSelection?: boolean | null;
+  defaultService?: (number | null) | Service;
+  inquiryType?: ('service-consultation' | 'project-inquiry' | 'partnership' | 'general' | 'other') | null;
+  successMessage?: string | null;
+  appearance?: ('full' | 'compact') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'consultationRequest';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services".
  */
 export interface Service {
@@ -1127,6 +1148,56 @@ export interface Client {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * Inbound consultation requests. Not publicly readable; create only via the controlled public API.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "consultation-requests".
+ */
+export interface ConsultationRequest {
+  id: number;
+  fullName: string;
+  companyName?: string | null;
+  jobTitle?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  preferredContactMethod?: ('phone' | 'email' | 'either') | null;
+  preferredContactTime?: string | null;
+  inquiryType?: ('service-consultation' | 'project-inquiry' | 'partnership' | 'general' | 'other') | null;
+  interestedServices?: (number | Service)[] | null;
+  relatedProject?: (number | null) | Project;
+  /**
+   * Main request body from the applicant.
+   */
+  message: string;
+  consentToContact: boolean;
+  /**
+   * Snapshot of the consent copy accepted at submit time.
+   */
+  consentText?: string | null;
+  locale: 'fa' | 'en';
+  sourcePath?: string | null;
+  sourceType?: ('contact-page' | 'service' | 'project' | 'client' | 'page' | 'other') | null;
+  referrer?: string | null;
+  utm?: {
+    source?: string | null;
+    medium?: string | null;
+    campaign?: string | null;
+    term?: string | null;
+    content?: string | null;
+  };
+  status: 'new' | 'contacted' | 'qualified' | 'in-progress' | 'converted' | 'closed' | 'spam';
+  assignedTo?: (number | null) | User;
+  /**
+   * Staff only — never exposed on the public API.
+   */
+  internalNotes?: string | null;
+  submittedAt?: string | null;
+  contactedAt?: string | null;
+  closedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
@@ -1362,6 +1433,10 @@ export interface PayloadLockedDocument {
         value: number | Project;
       } | null)
     | ({
+        relationTo: 'consultation-requests';
+        value: number | ConsultationRequest;
+      } | null)
+    | ({
         relationTo: 'media';
         value: number | Media;
       } | null)
@@ -1473,6 +1548,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         companyAbout?: T | CompanyAboutBlockSelect<T>;
         companyContact?: T | CompanyContactBlockSelect<T>;
+        consultationRequest?: T | ConsultationRequestBlockSelect<T>;
       };
   meta?:
     | T
@@ -1598,6 +1674,23 @@ export interface CompanyContactBlockSelect<T extends boolean = true> {
   showWorkingHours?: T;
   showSocial?: T;
   showMapLink?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ConsultationRequestBlock_select".
+ */
+export interface ConsultationRequestBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  showCompanyField?: T;
+  showJobTitleField?: T;
+  allowServiceSelection?: T;
+  defaultService?: T;
+  inquiryType?: T;
+  successMessage?: T;
+  appearance?: T;
   id?: T;
   blockName?: T;
 }
@@ -1758,6 +1851,46 @@ export interface ProjectsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "consultation-requests_select".
+ */
+export interface ConsultationRequestsSelect<T extends boolean = true> {
+  fullName?: T;
+  companyName?: T;
+  jobTitle?: T;
+  phone?: T;
+  email?: T;
+  preferredContactMethod?: T;
+  preferredContactTime?: T;
+  inquiryType?: T;
+  interestedServices?: T;
+  relatedProject?: T;
+  message?: T;
+  consentToContact?: T;
+  consentText?: T;
+  locale?: T;
+  sourcePath?: T;
+  sourceType?: T;
+  referrer?: T;
+  utm?:
+    | T
+    | {
+        source?: T;
+        medium?: T;
+        campaign?: T;
+        term?: T;
+        content?: T;
+      };
+  status?: T;
+  assignedTo?: T;
+  internalNotes?: T;
+  submittedAt?: T;
+  contactedAt?: T;
+  closedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

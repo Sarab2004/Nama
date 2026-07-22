@@ -73,7 +73,31 @@ Consultation CTA links to the existing Contact page (`/contact`) until a dedicat
 
 ### Out of scope here
 
-Real Nama seed content, Header/Footer wiring to Company Information, and a dedicated Consultation Requests form remain deferred.
+Real Nama seed content and Header/Footer wiring to Company Information remain deferred where not already shipped. Consultation Requests are implemented as a dedicated collection (see below).
+
+## Consultation Requests
+
+`consultation-requests` is a dedicated Leads collection for inbound consultation forms. Form Builder remains for generic CMS forms; it is **not** used for this workflow (status, assignment, service/project relations, internal notes).
+
+### Responsibility
+
+Public visitors submit via `POST /next/consultation-request` after server validation. Payload REST/GraphQL **cannot** create or read these documents publicly (`create: false`, `read/update/delete: authenticated`). Local API uses `overrideAccess: true` only inside that controlled route after validation.
+
+### Public form & Page Builder
+
+| Piece | Role |
+| --- | --- |
+| `ConsultationRequestForm` | Reusable client form (honeypot, consent, phone-or-email rule) |
+| `consultationRequest` block | Page Builder settings only (title, toggles, default service) — no submission data on the page |
+| `ServiceConsultationCTA` | Links to `/[locale]/contact?service|project=slug#consultation` |
+
+### Email
+
+No Payload email adapter is configured. Submissions still persist; outbound notification is deferred until SMTP/provider is configured. Do not hardcode company emails.
+
+### Out of scope here
+
+CRM, calendar booking, CAPTCHA, new SMTP provider, Privacy Policy page, UI Foundation 2026.
 
 ## Clients
 
@@ -153,7 +177,7 @@ Project cards and Project detail link name/logo to `/clients/[slug]` only when t
 
 ### Out of scope here
 
-Featured clients on the homepage, real Nama client seed content, Consultation Requests, Company Information footer wiring.
+Featured clients on the homepage, real Nama client seed content, Company Information footer wiring.
 
 ## Projects
 
@@ -306,7 +330,8 @@ No `meta.*` / SEO plugin fields on this Global. `generateCompanyOrganizationJson
 | --- | --- |
 | `companyAbout` | Introduction, mission, vision, values, optional logo; show/hide toggles only |
 | `companyContact` | Phones, emails, address, hours, social, map link, contact CTAs; Form Block stays separate |
+| `consultationRequest` | Consultation request form settings; submissions stored in `consultation-requests` |
 
 ### Out of scope here
 
-Real Nama seed content, Consultation Requests, map embeds/API keys, UI Foundation redesign, moving navigation into Company Information, SEO fields on the Global.
+Real Nama seed content, map embeds/API keys, UI Foundation redesign, moving navigation into Company Information, SEO fields on the Global.

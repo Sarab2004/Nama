@@ -333,6 +333,7 @@ export default async function ProjectPage({ params: paramsPromise }: Args) {
           description={dictionary.projects.ctaDescription}
           label={dictionary.projects.ctaLabel}
           locale={locale}
+          projectSlug={typeof project.slug === 'string' ? project.slug : undefined}
           title={dictionary.projects.ctaTitle}
         />
       </div>

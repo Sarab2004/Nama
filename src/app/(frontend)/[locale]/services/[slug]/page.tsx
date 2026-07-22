@@ -192,6 +192,7 @@ export default async function ServicePage({ params: paramsPromise }: Args) {
           description={dictionary.services.ctaDescription}
           label={dictionary.services.ctaLabel}
           locale={locale}
+          serviceSlug={typeof service.slug === 'string' ? service.slug : undefined}
           title={dictionary.services.ctaTitle}
         />
       </div>

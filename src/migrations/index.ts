@@ -6,6 +6,7 @@ import * as migration_20260721_132126_add_clients_collection from './20260721_13
 import * as migration_20260721_134737_add_projects_collection from './20260721_134737_add_projects_collection';
 import * as migration_20260721_143116_add_projects_search_redirect_relations from './20260721_143116_add_projects_search_redirect_relations';
 import * as migration_20260722_100954_add_clients_search_redirect_relations from './20260722_100954_add_clients_search_redirect_relations';
+import * as migration_20260722_144103_add_consultation_requests_collection from './20260722_144103_add_consultation_requests_collection';
 
 export const migrations = [
   {
@@ -46,6 +47,11 @@ export const migrations = [
   {
     up: migration_20260722_100954_add_clients_search_redirect_relations.up,
     down: migration_20260722_100954_add_clients_search_redirect_relations.down,
-    name: '20260722_100954_add_clients_search_redirect_relations'
+    name: '20260722_100954_add_clients_search_redirect_relations',
+  },
+  {
+    up: migration_20260722_144103_add_consultation_requests_collection.up,
+    down: migration_20260722_144103_add_consultation_requests_collection.down,
+    name: '20260722_144103_add_consultation_requests_collection'
   },
 ];

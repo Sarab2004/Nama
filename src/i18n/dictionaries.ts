@@ -17,7 +17,7 @@ export const dictionaries = {
   },
   "clients": {
     "about": "About the client",
-    "ctaDescription": "Share your project needs and our team will follow up through the contact form.",
+    "ctaDescription": "Share your project needs and our team will follow up on your consultation request.",
     "ctaLabel": "Request consultation",
     "ctaTitle": "Need a consultation?",
     "empty": "No published clients are available yet.",
@@ -50,6 +50,53 @@ export const dictionaries = {
     "viewOnMap": "View on map",
     "vision": "Vision",
     "workingHours": "Working hours"
+  },
+  "consultation": {
+    "consentLabel": "I agree to be contacted about this consultation request.",
+    "contactHint": "Provide at least a phone number or an email address.",
+    "contactMethods": {
+      "email": "Email",
+      "either": "Either",
+      "phone": "Phone"
+    },
+    "defaultDescription": "Tell us about your needs and our team will follow up.",
+    "defaultTitle": "Request a consultation",
+    "errorGeneric": "We could not send your request. Please try again.",
+    "fields": {
+      "companyName": "Company",
+      "email": "Email",
+      "fullName": "Full name",
+      "inquiryType": "Inquiry type",
+      "interestedServices": "Services of interest",
+      "jobTitle": "Job title",
+      "message": "Message",
+      "phone": "Phone",
+      "preferredContactMethod": "Preferred contact method",
+      "preferredContactTime": "Preferred contact time"
+    },
+    "inquiryTypes": {
+      "general": "General",
+      "other": "Other",
+      "partnership": "Partnership",
+      "projectInquiry": "Project inquiry",
+      "serviceConsultation": "Service consultation"
+    },
+    "preferredContactTimePlaceholder": "e.g. weekdays morning",
+    "submit": "Send request",
+    "submitting": "Sending…",
+    "successMessage": "Your consultation request was sent successfully. We will be in touch soon.",
+    "validation": {
+      "consentRequired": "Please confirm that we may contact you.",
+      "contactRequired": "Enter a phone number or an email address.",
+      "emailInvalid": "Enter a valid email address.",
+      "fullNameRequired": "Full name is required.",
+      "localeInvalid": "Invalid language selection.",
+      "messageRequired": "Message is required.",
+      "messageTooLong": "Message is too long.",
+      "messageTooShort": "Please write a slightly longer message.",
+      "phoneInvalid": "Enter a valid phone number.",
+      "spamRejected": "Unable to submit this request."
+    }
   },
   "footer": {
     "contact": "Contact",
@@ -84,7 +131,7 @@ export const dictionaries = {
   },
   "projects": {
     "client": "Client",
-    "ctaDescription": "Share your project needs and our team will follow up through the contact form.",
+    "ctaDescription": "Share your project needs and our team will follow up on your consultation request.",
     "ctaLabel": "Request consultation",
     "ctaTitle": "Need a consultation?",
     "empty": "No published projects are available yet.",
@@ -109,7 +156,7 @@ export const dictionaries = {
   "services": {
     "audiences": "Who this service is for",
     "benefits": "Benefits",
-    "ctaDescription": "Share your project needs and our team will follow up through the contact form.",
+    "ctaDescription": "Share your project needs and our team will follow up on your consultation request.",
     "ctaLabel": "Request consultation",
     "ctaTitle": "Need a consultation?",
     "empty": "No published services are available yet.",
@@ -159,7 +206,7 @@ export const dictionaries = {
   },
   "clients": {
     "about": "درباره کارفرما",
-    "ctaDescription": "نیاز پروژه خود را از طریق صفحه تماس ارسال کنید تا تیم ما پیگیری کند.",
+    "ctaDescription": "نیاز پروژه خود را از طریق فرم درخواست مشاوره ارسال کنید تا تیم ما پیگیری کند.",
     "ctaLabel": "درخواست مشاوره",
     "ctaTitle": "به مشاوره نیاز دارید؟",
     "empty": "در حال حاضر کارفرمای منتشرشده‌ای برای نمایش وجود ندارد.",
@@ -192,6 +239,53 @@ export const dictionaries = {
     "viewOnMap": "مشاهده روی نقشه",
     "vision": "چشم‌انداز",
     "workingHours": "ساعات کاری"
+  },
+  "consultation": {
+    "consentLabel": "با تماس تیم برای پیگیری این درخواست مشاوره موافقم.",
+    "contactHint": "حداقل یکی از فیلدهای تلفن یا ایمیل را وارد کنید.",
+    "contactMethods": {
+      "email": "ایمیل",
+      "either": "هر کدام",
+      "phone": "تلفن"
+    },
+    "defaultDescription": "نیاز خود را بنویسید تا تیم ما با شما تماس بگیرد.",
+    "defaultTitle": "درخواست مشاوره",
+    "errorGeneric": "ارسال درخواست ممکن نشد. لطفا دوباره تلاش کنید.",
+    "fields": {
+      "companyName": "شرکت",
+      "email": "ایمیل",
+      "fullName": "نام و نام خانوادگی",
+      "inquiryType": "نوع درخواست",
+      "interestedServices": "خدمات موردنظر",
+      "jobTitle": "سمت سازمانی",
+      "message": "پیام",
+      "phone": "تلفن",
+      "preferredContactMethod": "روش تماس ترجیحی",
+      "preferredContactTime": "زمان ترجیحی تماس"
+    },
+    "inquiryTypes": {
+      "general": "عمومی",
+      "other": "سایر",
+      "partnership": "همکاری",
+      "projectInquiry": "پیگیری پروژه",
+      "serviceConsultation": "مشاوره خدمت"
+    },
+    "preferredContactTimePlaceholder": "مثلاً صبح روزهای کاری",
+    "submit": "ارسال درخواست",
+    "submitting": "در حال ارسال…",
+    "successMessage": "درخواست مشاوره شما با موفقیت ارسال شد. به‌زودی با شما تماس می‌گیریم.",
+    "validation": {
+      "consentRequired": "لطفاً رضایت تماس را تأیید کنید.",
+      "contactRequired": "شماره تلفن یا ایمیل را وارد کنید.",
+      "emailInvalid": "ایمیل معتبر وارد کنید.",
+      "fullNameRequired": "نام و نام خانوادگی الزامی است.",
+      "localeInvalid": "انتخاب زبان نامعتبر است.",
+      "messageRequired": "پیام الزامی است.",
+      "messageTooLong": "پیام بیش از حد طولانی است.",
+      "messageTooShort": "لطفاً پیام را کمی کامل‌تر بنویسید.",
+      "phoneInvalid": "شماره تلفن معتبر وارد کنید.",
+      "spamRejected": "امکان ارسال این درخواست وجود ندارد."
+    }
   },
   "footer": {
     "contact": "تماس",
@@ -226,7 +320,7 @@ export const dictionaries = {
   },
   "projects": {
     "client": "کارفرما",
-    "ctaDescription": "نیاز پروژه خود را از طریق صفحه تماس ارسال کنید تا تیم ما پیگیری کند.",
+    "ctaDescription": "نیاز پروژه خود را از طریق فرم درخواست مشاوره ارسال کنید تا تیم ما پیگیری کند.",
     "ctaLabel": "درخواست مشاوره",
     "ctaTitle": "به مشاوره نیاز دارید؟",
     "empty": "در حال حاضر پروژه منتشرشده‌ای برای نمایش وجود ندارد.",
@@ -251,7 +345,7 @@ export const dictionaries = {
   "services": {
     "audiences": "مخاطبان این خدمت",
     "benefits": "مزایا",
-    "ctaDescription": "نیاز پروژه خود را از طریق صفحه تماس ارسال کنید تا تیم ما پیگیری کند.",
+    "ctaDescription": "نیاز پروژه خود را از طریق فرم درخواست مشاوره ارسال کنید تا تیم ما پیگیری کند.",
     "ctaLabel": "درخواست مشاوره",
     "ctaTitle": "به مشاوره نیاز دارید؟",
     "empty": "در حال حاضر خدمت منتشرشده‌ای برای نمایش وجود ندارد.",
