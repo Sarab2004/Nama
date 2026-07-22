@@ -8,9 +8,10 @@ const run = async () => {
   const payload = await getPayload({ config })
   await seedCorePublicPages({ payload, req: {} as never })
   console.log('Core public pages bootstrapped successfully.')
+  process.exit(0)
 }
 
 run().catch((error: unknown) => {
   console.error('Core public pages bootstrap failed:', error)
-  process.exitCode = 1
+  process.exit(1)
 })
